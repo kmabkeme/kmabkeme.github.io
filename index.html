@@ -20,7 +20,9 @@
 		<div class="container">
 			<form>
 				<label for="customRange">Custom range</label>
-  				<input type="range" class="custom-range" id="customRange" name="points1">
+  				<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
+  				<output name="ageOutputName1" id="ageOutputId1">24</output>
+  				<br />
 
   				<input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
    				<output name="ageOutputName" id="ageOutputId">24</output>
