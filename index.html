@@ -7,6 +7,7 @@
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
+		<link rel="stylesheet" href="css/mystyles.css">
 
 
 	</head> 
@@ -19,9 +20,32 @@
 
 		<div class="container">
 			<form>
-				<label for="customRange">Custom range</label>
-  				<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
-  				<output name="ageOutputName1" id="ageOutputId1">24</output>
+				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
+				<div id="reading-sidebar-contents" class="panel-body">
+					<div id="single">
+  						<button type="button" class="btn btn-primary btn-block" onclick="myFunction('mfj','mfs','head')">Single</button>
+  					</div>
+  					<div id="mfj">
+  						<button type="button" class="btn btn-danger btn-block">Married, filing jointly</button>
+  					</div>
+  					<div id="mfs">
+  						<button type="button" class="btn btn-success btn-block">Married, filing separately</button>
+  					</div>
+  					<div id="head">
+  						<button type="button" class="btn btn-warning btn-block">Head of household</button>
+  					</div>
+				</div>
+
+
+				<div id="myDIV">
+
+					<label for="customRange">Custom range</label>
+  					<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
+  					<output name="ageOutputName1" id="ageOutputId1">24</output>
+  					
+
+  				</div>
+
   				<br />
 
   				<input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
@@ -39,17 +63,73 @@
 			</form>
 		</div>
 
+		<div class="container">
 
-
+			<button class="btn btn-primary btn-lg" onclick="testFun('testId')" data-toggle="modal" data-target="#myModal">
+			  Launch demo modal
+			</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        <h1 id="testH1"></h1>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
 
 		<div class="container">
 			<button class="btn btn-success" onclick="$(this).hide();"> Kiss me! </button>
 		</div>
 
 	
+     	<script>
+ 			function testFun(variable){
+				//document.getElementById('testH1').innerHTML=variable;
+
+				document.getElementById('testH1').innerHTML=document.getElementById("formGroupExampleInput2").value;
+			}
+
+			function myFunction(btn1, btn2, btn3) {
+    			var x = document.getElementById(btn1);
+    			if (x.style.display === "none") {
+        			x.style.display = "block";
+    			} else {
+        			x.style.display = "none";
+    			}
+
+    			var x = document.getElementById(btn2);
+    			if (x.style.display === "none") {
+        			x.style.display = "block";
+    			} else {
+        			x.style.display = "none";
+    			}
+
+    			var x = document.getElementById(btn3);
+    			if (x.style.display === "none") {
+        			x.style.display = "block";
+    			} else {
+        			x.style.display = "none";
+    			}
+			}
+		</script>
+
 
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+
+
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
