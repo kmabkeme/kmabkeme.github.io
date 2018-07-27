@@ -1,3 +1,7 @@
 #reading-sidebar-contents .btn{
     width:200px;
 }
+
+.hidden {
+     display:none;
+}
