@@ -23,12 +23,30 @@
 				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
 					<!--Cannot use a btn-group class if I am making the other buttons disappear when I select one-->
 				<label for="tax-filing-status">Tax filing status:</label>
+
 				<div id="tax-filing-status" class="panel-body">
 					<div id="single">
-  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('mfj','mfs','head'); toggler('myDIV');">Single</button>
+  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('single'); toggler('incomeDIV');">Single</button>
+  					</div>
+  					<div id="marriedFilingJointly">
+  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');toggler('incomeDIV');">Married, filing jointly</button>
+  					</div>
+  					<div id="marriedFilingSeparately">
+  						<button type="button" class="btn btn-success" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');toggler('incomeDIV');">Married, filing separately</button>
+  					</div>
+  					<div id="headHousehold">
+  						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('headHousehold');toggler('incomeDIV');">Head of household</button>
+  					</div>
+				</div>
+
+				<!--Keeping the existing code safe for now...-->
+
+<!-- 				<div id="tax-filing-status" class="panel-body">
+					<div id="single">
+  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('mfj','mfs','head'); toggler('singleDIV');">Single</button>
   					</div>
   					<div id="mfj">
-  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('single','mfs','head')">Married, filing jointly</button>
+  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('single','mfs','head');toggler('marriedJointDIV');">Married, filing jointly</button>
   					</div>
   					<div id="mfs">
   						<button type="button" class="btn btn-success" onclick="hideOtherTaxFilingStatuses('single','mfj','head')">Married, filing separately</button>
@@ -36,47 +54,49 @@
   					<div id="head">
   						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('single','mfj','mfs')">Head of household</button>
   					</div>
-				</div>
+				</div> -->
 
 				<br />
 
 
-				<div id="myDIV" class="hidden">
+				<div id="incomeDIV" class="hidden">
 					<!--Don't need a slider here, think I will use number ranges instead
 					<label for="customRange">Custom range</label>
   					<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
   					<output name="ageOutputName1" id="ageOutputId1">24</output>
   					-->
 
-  					<label for="income-range-single">Adjusted Gross Income for 2018:</label>
-  					<div id="income-range-single" class="panel-body">
-  						<div id="single10">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','12','22','24','32','35','37');marginalTaxRateSingle.value = '10';">$0 - $9,525</button>
+  					<label for="income-range">Adjusted Gross Income for 2018:</label>
+  					<div id="income-range" class="panel-body">
+  						<div id="divIncome10">
+							<button type="button" id="btn10" class="btn btn-light" onclick="hideOtherIncomes('12','22','24','32','35','37');marginalTaxRate.value = '10';">10% rate income range</button>
 						</div>
-						<div id="single12">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','22','24','32','35','37');marginalTaxRateSingle.value = '12';">$9,525 - $38,700</button>
+						<div id="divIncome12">
+							<button type="button" id="btn12" class="btn btn-light" onclick="hideOtherIncomes('10','22','24','32','35','37');marginalTaxRate.value = '12';">12% rate income range</button>
 						</div>
-						<div id="single22">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','24','32','35','37');marginalTaxRateSingle.value = '22';">$38,700 - $82,500</button>
+						<div id="divIncome22">
+							<button type="button" id="btn22" class="btn btn-light" onclick="hideOtherIncomes('10','12','24','32','35','37');marginalTaxRate.value = '22';">22% rate income range</button>
 						</div>
-						<div id="single24">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','32','35','37');marginalTaxRateSingle.value = '24';">$82,500 - $157,500</button>
+						<div id="divIncome24">
+							<button type="button" id="btn24" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','32','35','37');marginalTaxRate.value = '24';">24% rate income range</button>
 						</div>
-						<div id="single32">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','35','37');marginalTaxRateSingle.value = '32';">$157,500 - $200,000</button>
+						<div id="divIncome32">
+							<button type="button" id="btn32" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','35','37');marginalTaxRate.value = '32';">32% rate income range</button>
 						</div>
-						<div id="single35">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','32','37');marginalTaxRateSingle.value = '35';">$200,000 - $500,000</button>
+						<div id="divIncome35">
+							<button type="button" id="btn35" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','32','37');marginalTaxRate.value = '35';">35% rate income range</button>
 						</div>
-						<div id="single37">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','32','35');marginalTaxRateSingle.value = '37';">Over $500,000</button>
+						<div id="divIncome37">
+							<button type="button" id="btn37" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','32','35');marginalTaxRate.value = '37';">37% rate income range</button>
 						</div>
 
   					</div>
 
-  					Marginal Tax Rate: <output id="marginalTaxRateSingle"></output>
+  					Marginal Tax Rate: <output id="marginalTaxRate"></output>
 
   				</div>
+
+ 
 
   				<br />
 
@@ -136,47 +156,96 @@
 				document.getElementById('marginalTaxRateSingle').innerHTML=variableIn;
 			}
 
-			function hideOtherTaxFilingStatuses(btn1, btn2, btn3) {
+			function hideOtherTaxFilingStatuses(taxStatusPicked) {
+
+					var btn10Text;
+					var btn12Text;
+					var btn22Text;
+					var btn24Text;
+					var btn32Text;
+					var btn35Text;
+					var btn37Text;
+
+				switch (taxStatusPicked) {
+
+					case 'single':
+						btn1 = 'marriedFilingJointly';
+						btn2 = 'marriedFilingSeparately';
+						btn3 = 'headHousehold';
+						btn10Text = '0 to $9,525';
+						btn12Text = '$9,525 to $38,700';
+						btn22Text = '$38,700 to $82,500';
+						btn24Text = '$82,500 to $157,500';
+						btn32Text = '$157,500 to $200,000';
+						btn35Text = '$200,000 to $500,000';
+						btn37Text = 'Over $500,000';
+						break;
+					case 'marriedFilingJointly':
+						btn1 = 'single';
+						btn2 = 'marriedFilingSeparately';
+						btn3 = 'headHousehold';
+						btn10Text = '0 to $19,050';
+						btn12Text = '$19,050 to $77,400';
+						btn22Text = '$77,400 to $165,000';
+						btn24Text = '$165,000 to $315,000';
+						btn32Text = '$315,000 to $400,000';
+						btn35Text = '$400,000 to $600,000';
+						btn37Text = 'Over $600,000';
+						break;
+					case 'marriedFilingSeparately':
+						btn1 = 'single';
+						btn2 = 'marriedFilingJointly';
+						btn3 = 'headHousehold';
+						btn10Text = '0 to $9,525';
+						btn12Text = '$9,525 to $38,700';
+						btn22Text = '$38,700 to $82,500';
+						btn24Text = '$82,500 to $157,500';
+						btn32Text = '$157,500 to $200,000';
+						btn35Text = '$200,000 to $500,000';
+						btn37Text = 'Over $500,000';
+						break;
+					case 'headHousehold':
+						btn1 = 'single';
+						btn2 = 'marriedFilingJointly';
+						btn3 = 'marriedFilingSeparately';
+						btn10Text = '0 to $13,600';
+						btn12Text = '$13,600 to $51,800';
+						btn22Text = '$51,800 to $82,500';
+						btn24Text = '$82,500 to $157,500';
+						btn32Text = '$157,500 to $200,000';
+						btn35Text = '$200,000 to $500,000';
+						btn37Text = 'Over $500,000';
+						break;
+				}
+
 				hideOneThing(btn1);
 				hideOneThing(btn2);
 				hideOneThing(btn3);
 
-/*    			var x = document.getElementById(btn1);
-    			if (x.style.display === "none") {
-        			x.style.display = "block";
-    			} else {
-        			x.style.display = "none";
-    			}
+				document.getElementById('btn10').innerText = btn10Text;
+				document.getElementById('btn12').innerText = btn12Text;
+				document.getElementById('btn22').innerText = btn22Text;
+				document.getElementById('btn24').innerText = btn24Text;
+				document.getElementById('btn32').innerText = btn32Text;
+				document.getElementById('btn35').innerText = btn35Text;
+				document.getElementById('btn37').innerText = btn37Text;
 
-    			var x = document.getElementById(btn2);
-    			if (x.style.display === "none") {
-        			x.style.display = "block";
-    			} else {
-        			x.style.display = "none";
-    			}
-
-    			var x = document.getElementById(btn3);
-    			if (x.style.display === "none") {
-        			x.style.display = "block";
-    			} else {
-        			x.style.display = "none";
-    			}*/
-
-    			//var x = document.getElementById(varControl);
-    			//if (x.style.display === "none") {
-        		//	x.style.display = "block";
-    			//} else {
-        		//	x.style.display = "none";
-    			//}
 			}
 
-			function hideOtherIncomes(type, btn1, btn2, btn3, btn4, btn5, btn6) {
-				hideOneThing(type + btn1);
-				hideOneThing(type + btn2);
-				hideOneThing(type + btn3);
-				hideOneThing(type + btn4);
-				hideOneThing(type + btn5);
-				hideOneThing(type + btn6);
+/*			function hideOtherTaxFilingStatuses(btn1, btn2, btn3) {
+				hideOneThing(btn1);
+				hideOneThing(btn2);
+				hideOneThing(btn3);
+			}*/
+
+			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
+				var incomeStr = 'divIncome'
+				hideOneThing(incomeStr + btn1);
+				hideOneThing(incomeStr + btn2);
+				hideOneThing(incomeStr + btn3);
+				hideOneThing(incomeStr + btn4);
+				hideOneThing(incomeStr + btn5);
+				hideOneThing(incomeStr + btn6);
 			}
 
 			function hideOneThing(thingToHide) {
