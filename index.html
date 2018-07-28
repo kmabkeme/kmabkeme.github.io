@@ -51,30 +51,30 @@
   					<label for="income-range-single">Adjusted Gross Income for 2018:</label>
   					<div id="income-range-single" class="panel-body">
   						<div id="single10">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('10','marginalTaxRateSingle');">$0 - $9,525</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','12','22','24','32','35','37');marginalTaxRateSingle.value = '10';">$0 - $9,525</button>
 						</div>
 						<div id="single12">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('12','marginalTaxRateSingle');">$9,525 - $38,700</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','22','24','32','35','37');marginalTaxRateSingle.value = '12';">$9,525 - $38,700</button>
 						</div>
 						<div id="single22">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38,700 - $82,500</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','24','32','35','37');marginalTaxRateSingle.value = '22';">$38,700 - $82,500</button>
 						</div>
 						<div id="single24">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$82,500 - $157,500</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','32','35','37');marginalTaxRateSingle.value = '24';">$82,500 - $157,500</button>
 						</div>
 						<div id="single32">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','35','37');marginalTaxRateSingle.value = '32';">$157,500 - $200,000</button>
 						</div>
 						<div id="single35">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','32','37');marginalTaxRateSingle.value = '35';">$200,000 - $500,000</button>
 						</div>
 						<div id="single37">
-							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('single','10','12','22','24','32','35');marginalTaxRateSingle.value = '37';">Over $500,000</button>
 						</div>
 
   					</div>
 
-  					<h1 id="marginalTaxRateSingle"></h1>
+  					Marginal Tax Rate: <output id="marginalTaxRateSingle"></output>
 
   				</div>
 
@@ -132,11 +132,16 @@
 			}
 
 			function grabValue(variableIn, whereOut){
-				document.getElementById(whereOut).innerHTML=variable;
+				//document.getElementById(whereOut).innerHTML=variableIn;
+				document.getElementById('marginalTaxRateSingle').innerHTML=variableIn;
 			}
 
 			function hideOtherTaxFilingStatuses(btn1, btn2, btn3) {
-    			var x = document.getElementById(btn1);
+				hideOneThing(btn1);
+				hideOneThing(btn2);
+				hideOneThing(btn3);
+
+/*    			var x = document.getElementById(btn1);
     			if (x.style.display === "none") {
         			x.style.display = "block";
     			} else {
@@ -155,7 +160,7 @@
         			x.style.display = "block";
     			} else {
         			x.style.display = "none";
-    			}
+    			}*/
 
     			//var x = document.getElementById(varControl);
     			//if (x.style.display === "none") {
@@ -163,6 +168,24 @@
     			//} else {
         		//	x.style.display = "none";
     			//}
+			}
+
+			function hideOtherIncomes(type, btn1, btn2, btn3, btn4, btn5, btn6) {
+				hideOneThing(type + btn1);
+				hideOneThing(type + btn2);
+				hideOneThing(type + btn3);
+				hideOneThing(type + btn4);
+				hideOneThing(type + btn5);
+				hideOneThing(type + btn6);
+			}
+
+			function hideOneThing(thingToHide) {
+    			var x = document.getElementById(thingToHide);
+    			if (x.style.display === "none") {
+        			x.style.display = "block";
+    			} else {
+        			x.style.display = "none";
+    			}
 			}
 		</script>
 
