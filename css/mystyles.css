@@ -1,7 +1,11 @@
-#reading-sidebar-contents .btn{
+#tax-filing-status .btn{
     width:200px;
 }
 
 .hidden {
      display:none;
+}
+
+#income-range-single .btn{
+    width:300px;
 }

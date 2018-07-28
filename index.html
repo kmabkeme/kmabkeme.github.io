@@ -21,29 +21,60 @@
 		<div class="container">
 			<form>
 				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
-					<!--Cannot use a btn-group class if I am applying different click events to each button-->
-				<div id="reading-sidebar-contents" class="panel-body">
+					<!--Cannot use a btn-group class if I am making the other buttons disappear when I select one-->
+				<label for="tax-filing-status">Tax filing status:</label>
+				<div id="tax-filing-status" class="panel-body">
 					<div id="single">
-  						<button type="button" class="btn btn-primary" onclick="myFunction('mfj','mfs','head'); toggler('myDIV');">Single</button>
+  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('mfj','mfs','head'); toggler('myDIV');">Single</button>
   					</div>
   					<div id="mfj">
-  						<button type="button" class="btn btn-danger" onclick="myFunction('single','mfs','head')">Married, filing jointly</button>
+  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('single','mfs','head')">Married, filing jointly</button>
   					</div>
   					<div id="mfs">
-  						<button type="button" class="btn btn-success" onclick="myFunction('single','mfj','head')">Married, filing separately</button>
+  						<button type="button" class="btn btn-success" onclick="hideOtherTaxFilingStatuses('single','mfj','head')">Married, filing separately</button>
   					</div>
   					<div id="head">
-  						<button type="button" class="btn btn-warning" onclick="myFunction('single','mfj','mfs')">Head of household</button>
+  						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('single','mfj','mfs')">Head of household</button>
   					</div>
 				</div>
 
+				<br />
+
 
 				<div id="myDIV" class="hidden">
-
+					<!--Don't need a slider here, think I will use number ranges instead
 					<label for="customRange">Custom range</label>
   					<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
   					<output name="ageOutputName1" id="ageOutputId1">24</output>
-  					
+  					-->
+
+  					<label for="income-range-single">Adjusted Gross Income for 2018:</label>
+  					<div id="income-range-single" class="panel-body">
+  						<div id="single10">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('10','marginalTaxRateSingle');">$0 - $9,525</button>
+						</div>
+						<div id="single12">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('12','marginalTaxRateSingle');">$9,525 - $38,700</button>
+						</div>
+						<div id="single22">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38,700 - $82,500</button>
+						</div>
+						<div id="single24">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$82,500 - $157,500</button>
+						</div>
+						<div id="single32">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+						</div>
+						<div id="single35">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+						</div>
+						<div id="single37">
+							<button type="button" class="btn btn-light" onclick="hideOtherIncomes('mfj','mfs','head'); grabValue('22','marginalTaxRateSingle');">$38700 - $82,500</button>
+						</div>
+
+  					</div>
+
+  					<h1 id="marginalTaxRateSingle"></h1>
 
   				</div>
 
@@ -100,7 +131,11 @@
 				document.getElementById('testH1').innerHTML=document.getElementById("formGroupExampleInput2").value;
 			}
 
-			function myFunction(btn1, btn2, btn3) {
+			function grabValue(variableIn, whereOut){
+				document.getElementById(whereOut).innerHTML=variable;
+			}
+
+			function hideOtherTaxFilingStatuses(btn1, btn2, btn3) {
     			var x = document.getElementById(btn1);
     			if (x.style.display === "none") {
         			x.style.display = "block";
