@@ -9,3 +9,17 @@
 #income-range .btn{
     width:200px;
 }
+
+.form-control {
+    width: 300px;
+}
+
+.label-on {
+  display: none;
+}
+input:checked ~ .label-off {
+  display: none;
+}
+input:checked ~ .label-on {
+  display: inline;
+}

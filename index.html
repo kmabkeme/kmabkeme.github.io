@@ -8,7 +8,11 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="css/mystyles.css">
-
+		<style>
+			input {
+    			width: 200px;
+			}	
+		</style>
 
 	</head> 
 	<body>
@@ -38,23 +42,6 @@
   						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('headHousehold');toggler('incomeDIV');">Head of household</button>
   					</div>
 				</div>
-
-				<!--Keeping the existing code safe for now...-->
-
-<!-- 				<div id="tax-filing-status" class="panel-body">
-					<div id="single">
-  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('mfj','mfs','head'); toggler('singleDIV');">Single</button>
-  					</div>
-  					<div id="mfj">
-  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('single','mfs','head');toggler('marriedJointDIV');">Married, filing jointly</button>
-  					</div>
-  					<div id="mfs">
-  						<button type="button" class="btn btn-success" onclick="hideOtherTaxFilingStatuses('single','mfj','head')">Married, filing separately</button>
-  					</div>
-  					<div id="head">
-  						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('single','mfj','mfs')">Head of household</button>
-  					</div>
-				</div> -->
 
 				<br />
 
@@ -95,6 +82,26 @@
   					Marginal Tax Rate: <output id="marginalTaxRate"></output>
 
   				</div>
+
+			  	<div class="form-group">
+			    	<label for="formNonRothIRAValue">Combined value of your non-Roth IRAs</label>
+			    	<input type="text" class="form-control" id="formNonRothIRAValue" placeholder="Enter dollar amount">
+				</div>
+
+				<div class="btn-group-toggle" data-toggle="buttons">
+  					<label class="btn btn-secondary active">
+    					<input type="checkbox" checked autocomplete="off" onchange="toggler('NonDeductIRADIV');">
+    					    <span class="label-off">off</span>
+    						<span class="label-on">on</span>
+  					</label>
+				</div>
+
+				<div id="NonDeductIRADIV" class="hidden">
+					<div class="form-group">
+				    	<label for="formNondeductibleIRA">Amount of non-deductible contributions</label>
+				    	<input type="text" class="form-control" id="formNondeductibleIRA" placeholder="Enter dollar amount">
+				  	</div>  			
+			  	</div>	
 
  
 
@@ -166,6 +173,8 @@
 					var btn35Text;
 					var btn37Text;
 
+					var incomeStr = 'divIncome'
+
 				switch (taxStatusPicked) {
 
 					case 'single':
@@ -230,13 +239,19 @@
 				document.getElementById('btn35').innerText = btn35Text;
 				document.getElementById('btn37').innerText = btn37Text;
 
-			}
+				// Show all of the income buttons if we have changed to a different tax filing status
+				showOneThing(incomeStr + '10');
+				showOneThing(incomeStr + '12');
+				showOneThing(incomeStr + '22');
+				showOneThing(incomeStr + '24');
+				showOneThing(incomeStr + '32');
+				showOneThing(incomeStr + '35');
+				showOneThing(incomeStr + '37');
 
-/*			function hideOtherTaxFilingStatuses(btn1, btn2, btn3) {
-				hideOneThing(btn1);
-				hideOneThing(btn2);
-				hideOneThing(btn3);
-			}*/
+				// Clear the marginal tax rate value
+				document.getElementById('marginalTaxRate').value='';
+
+			}
 
 			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
 				var incomeStr = 'divIncome'
@@ -255,6 +270,11 @@
     			} else {
         			x.style.display = "none";
     			}
+			}
+
+			function showOneThing(thingToShow) {
+    			var x = document.getElementById(thingToShow);
+        		x.style.display = "block";
 			}
 		</script>
 
