@@ -14,12 +14,12 @@
     width: 300px;
 }
 
-.label-on {
+.label-no {
   display: none;
 }
-input:checked ~ .label-off {
+input:checked ~ .label-yes {
   display: none;
 }
-input:checked ~ .label-on {
+input:checked ~ .label-no {
   display: inline;
 }
