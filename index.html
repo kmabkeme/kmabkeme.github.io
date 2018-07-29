@@ -79,13 +79,28 @@
 
   					</div>
 
-  					Marginal Tax Rate: <output id="marginalTaxRate"></output>
+  					Marginal Tax Rate for 2018: <output id="marginalTaxRate"></output>
 
   				</div>
 
+  				<div class="form-group">
+			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
+			    	<div class="input-group">
+			    		<input type="number" max="100" min="0" class="form-control col-1" id="formEstFutureTaxRate">
+			    		<div class="input-group-addon">
+      						<div class="input-group-text">%</div>
+    					</div>
+			    	</div>
+				</div>
+
 			  	<div class="form-group">
 			    	<label for="formNonRothIRAValue">Combined value of your non-Roth IRAs</label>
-			    	<input type="text" class="form-control" id="formNonRothIRAValue" placeholder="Enter dollar amount">
+			    	<div class="input-group">
+			    	    <div class="input-group-prepend">
+      						<div class="input-group-text">$</div>
+    					</div>
+			    		<input type="number" min="0" class="form-control col-2" id="formNonRothIRAValue" placeholder="Enter dollar amount">
+			    	</div>
 				</div>
 
 				<div class="btn-group-toggle" data-toggle="buttons">
@@ -110,6 +125,12 @@
 				</div>
 
  
+
+
+
+
+
+
 
   				<br />
 
