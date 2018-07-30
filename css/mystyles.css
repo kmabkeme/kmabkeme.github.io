@@ -23,3 +23,7 @@ input:checked ~ .label-yes {
 input:checked ~ .label-no {
   display: inline;
 }
+
+#interest-rate .btn{
+    width:250px;
+}

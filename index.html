@@ -79,14 +79,29 @@
 
   					</div>
 
-  					Marginal Tax Rate for 2018: <output id="marginalTaxRate"></output>%
+<!--   					<br />
+
+  					Marginal Tax Rate for 2018: <strong><output id="marginalTaxRate"></output>%</strong>
+  					<br /><br /> -->
 
   				</div>
 
   				<div class="form-group">
+			    	<label for="investIntRate">Marginal Tax Rate for 2018:</label>
+			    	<div class="input-group">
+			    		<input type="number" max="37" min="10" class="form-control col-2" id="marginalTaxRate" required readonly>
+			    		<div class="input-group-addon">
+      						<div class="input-group-text">%</div>
+    					</div>
+			    	</div>
+				</div>
+
+  				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
+
+  				<div class="form-group">
 			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
 			    	<div class="input-group">
-			    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate">
+			    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate" required>
 			    		<div class="input-group-addon">
       						<div class="input-group-text">%</div>
     					</div>
@@ -99,14 +114,14 @@
 			    	    <div class="input-group-prepend">
       						<div class="input-group-text">$</div>
     					</div>
-			    		<input type="number" min="0" class="form-control col-3" id="formNonRothIRAValue">
+			    		<input type="number" min="0" class="form-control col-3" id="formNonRothIRAValue" required>
 			    	</div>
 				</div>
 
 				<div class="btn-group-toggle" data-toggle="buttons">
 					<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
   					<label class="btn btn-secondary active">
-    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
+    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');" required>
     					    <span class="label-yes">Yes</span>
     						<span class="label-no">No</span>
   					</label>
@@ -119,7 +134,7 @@
 			    	    	<div class="input-group-prepend">
       							<div class="input-group-text">$</div>
     						</div>
-				    		<input type="text" class="form-control col-3" id="formNondeductibleIRA">
+				    		<input type="number" min="1" class="form-control col-3" id="formNondeductibleIRA">
 				    	</div>
 				  	</div>  			
 			  	</div>	
@@ -130,29 +145,92 @@
 			    	    <div class="input-group-prepend">
       						<div class="input-group-text">$</div>
     					</div>
-			    		<input type="text" class="form-control col-3" id="formConvertValue">
+			    		<input type="number" min="1" class="form-control col-3" id="formConvertValue" required>
 			    	</div>
 				</div>
 
 				<div class="form-group">
 			    	<label for="formYears">Number of years before you expect to start withdrawing funds:</label>
 			    	<div class="input-group">
-			    		<input type="text" class="form-control col-3" id="formYears">
+			    		<input type="number" min="1" max="50" class="form-control col-2" id="formYears" required>
 			    		<div class="input-group-addon">
       						<div class="input-group-text">years</div>
     					</div>
 			    	</div>
 				</div>
 
+<!-- 				<div class="form-group">
+			    	<label for="formInterestRate">Your expected rate of return, based on your risk profile:</label>
+			    	<div class="input-group">
+			    		<input type="number" min="1" max="7" class="form-control col-2" id="formYears" required>
+			    		<div class="input-group-addon">
+      						<div class="input-group-text">%</div>
+    					</div>
+			    	</div>
+				</div> -->
+
+
+
+				<label for="interest-rate">Select your investment risk profile and likely annual rate of return:</label>
+
+				<div id="interest-rate" class="panel-body">
+					<div id="divIntRate2.5">
+  						<button type="button" class="btn btn-primary" onclick="hideOtherInterestRates('3.5','4.4','5.2','6','6.6');investIntRate.value = '2.5';">Short-term - 2.5%</button>
+  					</div>
+  					<div id="divIntRate3.5">
+  						<button type="button" class="btn btn-danger" onclick="hideOtherInterestRates('2.5','4.4','5.2','6','6.6');investIntRate.value = '3.5';">Conservative - 3.5%</button>
+  					</div>
+  					<div id="divIntRate4.4">
+  						<button type="button" class="btn btn-success" onclick="hideOtherInterestRates('2.5','3.5','5.2','6','6.6');investIntRate.value = '4.4';">Moderately Conservative - 4.4%</button>
+  					</div>
+  					<div id="divIntRate5.2">
+  						<button type="button" class="btn btn-warning" onclick="hideOtherInterestRates('2.5','3.5','4.4','6','6.6');investIntRate.value = '5.2';">Moderate - 5.2%</button>
+  					</div>
+  					<div id="divIntRate6">
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6.6');investIntRate.value = '6';">Moderately Aggressive - 6.0%</button>
+  					</div>
+  					<div id="divIntRate6.6">
+  						<button type="button" class="btn btn-info" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6');investIntRate.value = '6.6';">Aggressive - 6.6%</button>
+  					</div>
+				</div>
+
+				<div class="form-group">
+			    	<label for="investIntRate">Likely Rate of Return:</label>
+			    	<div class="input-group">
+			    		<input type="number" max="7" min="0" class="form-control col-2" id="investIntRate" required readonly>
+			    		<div class="input-group-addon">
+      						<div class="input-group-text">%</div>
+    					</div>
+			    	</div>
+				</div>
+
+				<!-- <div>
+					Likely Rate of Return: <strong><input id="investIntRate"></input>%</strong>
+				</div> -->
+
+				<br />
+
  
+				<div id="submitDIV">
+  					<button type="submit" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
+  				</div>
+
+				<div>
+					Final value of Roth IRA conversion: <strong>$<input id="finalRothIRA"></input></strong>
+				</div>
+
+				<div>
+					Final value if funds left in traditional IRA: <strong>$<input id="finalTradIRA"></input></strong>
+				</div>
+
+				<div>
+					Final value of investing the money that would have gone to taxes for the IRA conversion: <strong>$<input id="finalTaxesIRANonConvert"></input></strong>
+				</div>
 
 
 
-
-
-
-
-  				<br />
+<!--2018-07-29, KA - Commenting out stuff that is in here because I was testing it out-->
+<!--   				<br />
 
   				<input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
    				<output name="ageOutputName" id="ageOutputId">24</output>
@@ -165,7 +243,7 @@
 				<div class="form-group">
 			    	<label for="formGroupExampleInput2">Another label</label>
 			    	<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-			  	</div>
+			  	</div> -->
 			</form>
 		</div>
 
@@ -199,7 +277,7 @@
 		</div>
 
 		<div class="container">
-			<button class="btn btn-success" onclick="$(this).hide();"> Kiss me! </button>
+			<button class="btn btn-success" onclick="$(this).hide();"> Click me! </button>
 		</div>
 
 	
@@ -210,22 +288,17 @@
 				document.getElementById('testH1').innerHTML=document.getElementById("formGroupExampleInput2").value;
 			}
 
-			function grabValue(variableIn, whereOut){
-				//document.getElementById(whereOut).innerHTML=variableIn;
-				document.getElementById('marginalTaxRateSingle').innerHTML=variableIn;
-			}
-
 			function hideOtherTaxFilingStatuses(taxStatusPicked) {
 
-					var btn10Text;
-					var btn12Text;
-					var btn22Text;
-					var btn24Text;
-					var btn32Text;
-					var btn35Text;
-					var btn37Text;
+				var btn10Text;
+				var btn12Text;
+				var btn22Text;
+				var btn24Text;
+				var btn32Text;
+				var btn35Text;
+				var btn37Text;
 
-					var incomeStr = 'divIncome'
+				var incomeStr = 'divIncome'
 
 				switch (taxStatusPicked) {
 
@@ -315,6 +388,15 @@
 				hideOneThing(incomeStr + btn6);
 			}
 
+			function hideOtherInterestRates(btn1, btn2, btn3, btn4, btn5) {
+				var riskProfileStr = 'divIntRate'
+				hideOneThing(riskProfileStr + btn1);
+				hideOneThing(riskProfileStr + btn2);
+				hideOneThing(riskProfileStr + btn3);
+				hideOneThing(riskProfileStr + btn4);
+				hideOneThing(riskProfileStr + btn5);
+			}
+
 			function hideOneThing(thingToHide) {
     			var x = document.getElementById(thingToHide);
     			if (x.style.display === "none") {
@@ -329,31 +411,107 @@
         		x.style.display = "block";
 			}
 
+			function calculateAndDisplay() {
+    			var margTaxRateToday = document.getElementById('marginalTaxRate').value;
+    			var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
+    			var tradIRAValue = document.getElementById('formNonRothIRAValue').value;
+    			var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
+    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value;
+    			var convertValue = document.getElementById('formConvertValue').value;
+    			var yearsValue = document.getElementById('formYears').value;
+    			var interestRateValue = document.getElementById('investIntRate').value;
+
+    			// Now we need to calculate the increase in value of each portion
+
+    			// For the amount converted to the Roth IRA
+    			var finalCalc = FVcalc(convertValue,interestRateValue,yearsValue);
+    			var roth = finalCalc;
+    			document.getElementById('finalRothIRA').value=finalCalc;
+
+    			// If you left the amount in the traditional IRA and allowed it to compound there
+    			// But then you'll have to pay taxes on this amount
+    			var trad = finalCalc * (1 - margTaxRateFuture/100);
+    			document.getElementById('finalTradIRA').value = trad;
+
+    			// The amount of taxes that need to be paid immediately for the Roth IRA conversion come out of other
+    			// funds. If one does not convert the money to a Roth IRA, then this money could be invested in a
+    			// regular investment account in which taxes apply to the capital gains only.
+    			var investedTaxes = margTaxRateToday/100*convertValue;
+    			document.getElementById('finalTaxesIRANonConvert').value=(FVcalc(investedTaxes,interestRateValue,yearsValue) - investedTaxes) * (1 - 0.15) + investedTaxes;
+
+				//addData('myChart', [roth, trad]);
+				drawBarChart();
+        		
+			}
+
+			// From https://stackoverflow.com/questions/4712585/calculating-future-value-with-compound-interest-with-javascript
+			function FVcalc(PresentAmount,InterestRate,NumberOfYears) {
+    			var timescompound = 1; // For just compounding annually
+    			var AnnualInterestRate = (InterestRate/100)/timescompound;
+    			var Years= NumberOfYears
+
+    			var Periods=timescompound*Years;
+    			var NumPayments=Periods;
+    			var Prin=PresentAmount;
+
+    			var FutureValue=Math.floor((Prin)*(Math.pow((1+AnnualInterestRate),(Periods)))*100)/100;
+
+    			return FutureValue
+			}
+
 		</script>
 
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 
 		<script>
-			var ctx = document.getElementById('myChart').getContext('2d');
-			var chart = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'line',
 
-			    // The data for our dataset
-			    data: {
-			        labels: ["January", "February", "March", "April", "May", "June", "July"],
-			        datasets: [{
-			            label: "My First dataset",
-			            backgroundColor: 'rgb(255, 99, 132)',
-			            borderColor: 'rgb(255, 99, 132)',
-			            data: [0, 10, 5, 2, 20, 30, 45],
-			        }]
-			    },
-
-			    // Configuration options go here
-			    options: {}
+			Chart.scaleService.updateScaleDefaults('linear', {
+    			ticks: {
+        				min: 0
+    			}
 			});
+
+			function drawBarChart() {
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var roth = document.getElementById('finalRothIRA').value;
+				var trad = document.getElementById('finalTradIRA').value;
+				var chart = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'bar',
+
+				    // The data for our dataset
+				    data: {
+				        labels: ["Convert to Roth IRA", "Leave in Traditional IRA"],
+				        datasets: [{
+				            label: "My First dataset",
+				            backgroundColor: 'rgb(255, 99, 132)',
+				            borderColor: 'rgb(255, 99, 132)',
+				            data: [roth, trad],
+				        }]
+				    },
+
+				    // Configuration options go here
+				    options: {}
+				});
+			}
+
+
+			function addData(chart, data) {
+    			//chart.data.labels.push(label);
+    			chart.data.datasets.forEach((dataset) => {
+        			dataset.data.push(data);
+    				});
+    			chart.update();
+			}
+
+/*			function addData(chart, label, data) {
+    			chart.data.labels.push(label);
+    			chart.data.datasets.forEach((dataset) => {
+        			dataset.data.push(data);
+    				});
+    			chart.update();
+			}*/
 		</script>
 
 
