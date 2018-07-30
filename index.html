@@ -3,7 +3,7 @@
 	<head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Calculator</title>
+		<title>Roth IRA Conversion Calculator</title>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
@@ -18,82 +18,111 @@
 	<body>
 
 		<div class="container">
-  			<h1>Kristin's Calculator</h1>
+  			<h1>Roth IRA Conversion Calculator</h1>
   			<p>This is some text.</p> 
 		</div>
 
 		<div class="container">
 			<form>
-				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
-					<!--Cannot use a btn-group class if I am making the other buttons disappear when I select one-->
-				<label for="tax-filing-status">Tax filing status:</label>
+				<div class="row">
+					<div class="col-sm">
+						<label for="tax-filing-status">Tax filing status:</label><br  />
 
-				<div id="tax-filing-status" class="panel-body">
-					<div id="single">
-  						<button type="button" class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('single'); toggler('incomeDIV');">Single</button>
-  					</div>
-  					<div id="marriedFilingJointly">
-  						<button type="button" class="btn btn-danger" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');toggler('incomeDIV');">Married, filing jointly</button>
-  					</div>
-  					<div id="marriedFilingSeparately">
-  						<button type="button" class="btn btn-success" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');toggler('incomeDIV');">Married, filing separately</button>
-  					</div>
-  					<div id="headHousehold">
-  						<button type="button" class="btn btn-warning" onclick="hideOtherTaxFilingStatuses('headHousehold');toggler('incomeDIV');">Head of household</button>
-  					</div>
-				</div>
-
-				<br />
-
-
-				<div id="incomeDIV" class="hidden">
-					<!--Don't need a slider here, think I will use number ranges instead
-					<label for="customRange">Custom range</label>
-  					<input type="range" class="custom-range" id="customRange" name="points1" value="24" min="1" max="100" oninput="ageOutputId1.value = customRange.value">
-  					<output name="ageOutputName1" id="ageOutputId1">24</output>
-  					-->
-
-  					<label for="income-range">Adjusted Gross Income for 2018:</label>
-  					<div id="income-range" class="panel-body">
-  						<div id="divIncome10">
-							<button type="button" id="btn10" class="btn btn-light" onclick="hideOtherIncomes('12','22','24','32','35','37');marginalTaxRate.value = '10';">10% rate income range</button>
-						</div>
-						<div id="divIncome12">
-							<button type="button" id="btn12" class="btn btn-light" onclick="hideOtherIncomes('10','22','24','32','35','37');marginalTaxRate.value = '12';">12% rate income range</button>
-						</div>
-						<div id="divIncome22">
-							<button type="button" id="btn22" class="btn btn-light" onclick="hideOtherIncomes('10','12','24','32','35','37');marginalTaxRate.value = '22';">22% rate income range</button>
-						</div>
-						<div id="divIncome24">
-							<button type="button" id="btn24" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','32','35','37');marginalTaxRate.value = '24';">24% rate income range</button>
-						</div>
-						<div id="divIncome32">
-							<button type="button" id="btn32" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','35','37');marginalTaxRate.value = '32';">32% rate income range</button>
-						</div>
-						<div id="divIncome35">
-							<button type="button" id="btn35" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','32','37');marginalTaxRate.value = '35';">35% rate income range</button>
-						</div>
-						<div id="divIncome37">
-							<button type="button" id="btn37" class="btn btn-light" onclick="hideOtherIncomes('10','12','22','24','32','35');marginalTaxRate.value = '37';">37% rate income range</button>
+						<div id="tax-filing-status" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('single');">
+    							<input type="radio" name="options" id="single" autocomplete="off" checked> Single
+  							</label>
+  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');">
+    							<input type="radio" name="options" id="marriedFilingJointly" autocomplete="off"> Married, filing jointly
+  							</label>
+  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');">
+    							<input type="radio" name="options" id="marriedFilingSeparately" autocomplete="off"> Married, filing separately
+  							</label>
+  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('headHousehold');">
+    							<input type="radio" name="options" id="headHousehold" autocomplete="off"> Head of household
+  							</label>
 						</div>
 
-  					</div>
+<!--  						<div id="tax-filing-status" class="panel-body btn-group-vertical btn-group-toggle" data-toggle="buttons">
+		  					<button type="button" id="single" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('single');">Single</button>
+		  					<button type="button" id="marriedFilingJointly" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');">Married, filing jointly</button>
+		  					<button type="button" id="marriedFilingSeparately" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');">Married, filing separately</button>
+		  					<button type="button" id="headHousehold" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('headHousehold');">Head of household</button>
+						</div>   -->
+					</div>
 
-<!--   					<br />
+				 	<div class="col-sm">
 
-  					Marginal Tax Rate for 2018: <strong><output id="marginalTaxRate"></output>%</strong>
-  					<br /><br /> -->
+				 		<label for="income-range">Adjusted Gross Income for 2018:</label><br />
 
-  				</div>
+						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+  							<label class="btn btn-secondary" id="btn10" onclick="marginalTaxRate.value = '10';">
+    							<input type="radio" name="options1" autocomplete="off"> 0 to $9,525
+  							</label>
+  							<label class="btn btn-secondary" id="btn12" onclick="marginalTaxRate.value = '12';">
+    							<input type="radio" name="options1" autocomplete="off"> $9,525 to $38,700
+  							</label>
+  							<label class="btn btn-secondary" id="btn22" onclick="marginalTaxRate.value = '22';">
+    							<input type="radio" name="options1" autocomplete="off"> $38,700 to $82,500
+  							</label>
+  							<label class="btn btn-secondary" id="btn24" onclick="marginalTaxRate.value = '24';">
+    							<input type="radio" name="options1" autocomplete="off"> $82,500 to $157,500
+  							</label>
+  							<label class="btn btn-secondary" id="btn32" onclick="marginalTaxRate.value = '32';">
+    							<input type="radio" name="options1" autocomplete="off"> $157,500 to $200,000
+  							</label>
+  							<label class="btn btn-secondary" id="btn35" onclick="marginalTaxRate.value = '35';">
+    							<input type="radio" name="options1" autocomplete="off"> $200,000 to $500,000
+  							</label>
+  							<label class="btn btn-secondary" id="btn37" onclick="marginalTaxRate.value = '37';">
+    							<input type="radio" name="options1" autocomplete="off"> Over $500,000
+  							</label>
+						</div>
 
-  				<div class="form-group">
-			    	<label for="investIntRate">Marginal Tax Rate for 2018:</label>
-			    	<div class="input-group">
-			    		<input type="number" max="37" min="10" class="form-control col-2" id="marginalTaxRate" onsubmit = "return false" required readonly>
-			    		<div class="input-group-addon">
-      						<div class="input-group-text">%</div>
-    					</div>
-			    	</div>
+
+						<!-- <div id="incomeDIV" >
+
+		  					<div id="income-range" class="panel-body">
+		  						<div id="divIncome10"> -->
+<!-- 									<button type="button" id="btn10" class="btn btn-secondary" onclick="marginalTaxRate.value = '10';">10% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome12"> -->
+<!-- 									<button type="button" id="btn12" class="btn btn-secondary" onclick="marginalTaxRate.value = '12';">12% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome22"> -->
+<!-- 									<button type="button" id="btn22" class="btn btn-secondary" onclick="marginalTaxRate.value = '22';">22% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome24"> -->
+<!-- 									<button type="button" id="btn24" class="btn btn-secondary" onclick="marginalTaxRate.value = '24';">24% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome32"> -->
+<!-- 									<button type="button" id="btn32" class="btn btn-secondary" onclick="marginalTaxRate.value = '32';">32% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome35"> -->
+<!-- 									<button type="button" id="btn35" class="btn btn-secondary" onclick="marginalTaxRate.value = '35';">35% rate income range</button>
+ --><!-- 								</div>
+								<div id="divIncome37"> -->
+<!-- 									<button type="button" id="btn37" class="btn btn-secondary" onclick="marginalTaxRate.value = '37';">37% rate income range</button>
+ --><!-- 								</div> -->
+
+<!-- 		  					</div>
+
+	  					</div> -->
+	  				</div>
+
+	  				<div class="col-sm">
+
+		  				<div class="form-group">
+					    	<label for="investIntRate">Marginal Tax Rate for 2018:</label>
+					    	<div class="input-group">
+					    		<input type="number" max="37" min="10" class="form-control col-2" id="marginalTaxRate" readonly>
+					    		<div class="input-group-append">
+		      						<div class="input-group-text">%</div>
+		    					</div>
+					    	</div>
+						</div>
+					</div>
+
 				</div>
 
   				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
@@ -101,27 +130,19 @@
   				<div class="form-group">
 			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
 			    	<div class="input-group">
-			    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate" onsubmit = "return false" required>
-			    		<div class="input-group-addon">
+			    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate">
+			    		<div class="input-group-append">
       						<div class="input-group-text">%</div>
     					</div>
 			    	</div>
 				</div>
 
-			  	<div class="form-group">
-			    	<label for="formNonRothIRAValue">Combined value of your non-Roth IRAs</label>
-			    	<div class="input-group">
-			    	    <div class="input-group-prepend">
-      						<div class="input-group-text">$</div>
-    					</div>
-			    		<input type="number" min="0" class="form-control col-3" id="formNonRothIRAValue" onsubmit = "return false" required>
-			    	</div>
-				</div>
+
 
 				<div class="btn-group-toggle" data-toggle="buttons">
 					<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
   					<label class="btn btn-secondary active">
-    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');" required>
+    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
     					    <span class="label-yes">Yes</span>
     						<span class="label-no">No</span>
   					</label>
@@ -134,9 +155,19 @@
 			    	    	<div class="input-group-prepend">
       							<div class="input-group-text">$</div>
     						</div>
-				    		<input type="number" min="1" class="form-control col-3" id="formNondeductibleIRA" onsubmit = "return false">
+				    		<input type="number" min="1" class="form-control col-4" id="formNondeductibleIRA">
 				    	</div>
-				  	</div>  			
+				  	</div>
+
+					<div class="form-group">
+				    	<label for="formNonRothIRAValue">Combined value of your non-Roth IRAs</label>
+				    	<div class="input-group">
+				    	    <div class="input-group-prepend">
+	      						<div class="input-group-text">$</div>
+	    					</div>
+				    		<input type="number" min="0" class="form-control col-4" id="formNonRothIRAValue">
+				    	</div>
+					</div>  			
 			  	</div>	
 
 			  	<div class="form-group">
@@ -145,15 +176,15 @@
 			    	    <div class="input-group-prepend">
       						<div class="input-group-text">$</div>
     					</div>
-			    		<input type="number" min="1" class="form-control col-3" id="formConvertValue" onsubmit = "return false" required>
+			    		<input type="number" min="1" class="form-control col-4" id="formConvertValue">
 			    	</div>
 				</div>
 
 				<div class="form-group">
 			    	<label for="formYears">Number of years before you expect to start withdrawing funds:</label>
 			    	<div class="input-group">
-			    		<input type="number" min="1" max="50" class="form-control col-2" id="formYears" onsubmit = "return false" required>
-			    		<div class="input-group-addon">
+			    		<input type="number" min="1" max="50" class="form-control col-2" id="formYears">
+			    		<div class="input-group-append">
       						<div class="input-group-text">years</div>
     					</div>
 			    	</div>
@@ -175,30 +206,30 @@
 
 				<div id="interest-rate" class="panel-body">
 					<div id="divIntRate2.5">
-  						<button type="button" class="btn btn-primary" onclick="hideOtherInterestRates('3.5','4.4','5.2','6','6.6');investIntRate.value = '2.5';">Short-term - 2.5%</button>
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('3.5','4.4','5.2','6','6.6');investIntRate.value = '2.5';">Short-term - 2.5%</button>
   					</div>
   					<div id="divIntRate3.5">
-  						<button type="button" class="btn btn-danger" onclick="hideOtherInterestRates('2.5','4.4','5.2','6','6.6');investIntRate.value = '3.5';">Conservative - 3.5%</button>
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','4.4','5.2','6','6.6');investIntRate.value = '3.5';">Conservative - 3.5%</button>
   					</div>
   					<div id="divIntRate4.4">
-  						<button type="button" class="btn btn-success" onclick="hideOtherInterestRates('2.5','3.5','5.2','6','6.6');investIntRate.value = '4.4';">Moderately Conservative - 4.4%</button>
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','5.2','6','6.6');investIntRate.value = '4.4';">Moderately Conservative - 4.4%</button>
   					</div>
   					<div id="divIntRate5.2">
-  						<button type="button" class="btn btn-warning" onclick="hideOtherInterestRates('2.5','3.5','4.4','6','6.6');investIntRate.value = '5.2';">Moderate - 5.2%</button>
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','6','6.6');investIntRate.value = '5.2';">Moderate - 5.2%</button>
   					</div>
   					<div id="divIntRate6">
   						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6.6');investIntRate.value = '6';">Moderately Aggressive - 6.0%</button>
   					</div>
   					<div id="divIntRate6.6">
-  						<button type="button" class="btn btn-info" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6');investIntRate.value = '6.6';">Aggressive - 6.6%</button>
+  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6');investIntRate.value = '6.6';">Aggressive - 6.6%</button>
   					</div>
 				</div>
 
 				<div class="form-group">
 			    	<label for="investIntRate">Likely Rate of Return:</label>
 			    	<div class="input-group">
-			    		<input type="number" max="7" min="0" class="form-control col-2" id="investIntRate" required readonly>
-			    		<div class="input-group-addon">
+			    		<input type="number" max="7" min="0" class="form-control col-2" id="investIntRate">
+			    		<div class="input-group-append">
       						<div class="input-group-text">%</div>
     					</div>
 			    	</div>
@@ -304,9 +335,9 @@
 				switch (taxStatusPicked) {
 
 					case 'single':
-						btn1 = 'marriedFilingJointly';
+/*						btn1 = 'marriedFilingJointly';
 						btn2 = 'marriedFilingSeparately';
-						btn3 = 'headHousehold';
+						btn3 = 'headHousehold';*/
 						btn10Text = '0 to $9,525';
 						btn12Text = '$9,525 to $38,700';
 						btn22Text = '$38,700 to $82,500';
@@ -316,9 +347,9 @@
 						btn37Text = 'Over $500,000';
 						break;
 					case 'marriedFilingJointly':
-						btn1 = 'single';
-						btn2 = 'marriedFilingSeparately';
-						btn3 = 'headHousehold';
+						// btn1 = 'single';
+						// btn2 = 'marriedFilingSeparately';
+						// btn3 = 'headHousehold';
 						btn10Text = '0 to $19,050';
 						btn12Text = '$19,050 to $77,400';
 						btn22Text = '$77,400 to $165,000';
@@ -328,9 +359,9 @@
 						btn37Text = 'Over $600,000';
 						break;
 					case 'marriedFilingSeparately':
-						btn1 = 'single';
-						btn2 = 'marriedFilingJointly';
-						btn3 = 'headHousehold';
+						// btn1 = 'single';
+						// btn2 = 'marriedFilingJointly';
+						// btn3 = 'headHousehold';
 						btn10Text = '0 to $9,525';
 						btn12Text = '$9,525 to $38,700';
 						btn22Text = '$38,700 to $82,500';
@@ -340,9 +371,9 @@
 						btn37Text = 'Over $500,000';
 						break;
 					case 'headHousehold':
-						btn1 = 'single';
-						btn2 = 'marriedFilingJointly';
-						btn3 = 'marriedFilingSeparately';
+						// btn1 = 'single';
+						// btn2 = 'marriedFilingJointly';
+						// btn3 = 'marriedFilingSeparately';
 						btn10Text = '0 to $13,600';
 						btn12Text = '$13,600 to $51,800';
 						btn22Text = '$51,800 to $82,500';
@@ -353,9 +384,9 @@
 						break;
 				}
 
-				hideOneThing(btn1);
-				hideOneThing(btn2);
-				hideOneThing(btn3);
+				// hideOneThing(btn1);
+				// hideOneThing(btn2);
+				// hideOneThing(btn3);
 
 				document.getElementById('btn10').innerText = btn10Text;
 				document.getElementById('btn12').innerText = btn12Text;
@@ -366,13 +397,13 @@
 				document.getElementById('btn37').innerText = btn37Text;
 
 				// Show all of the income buttons if we have changed to a different tax filing status
-				showOneThing(incomeStr + '10');
+/*				showOneThing(incomeStr + '10');
 				showOneThing(incomeStr + '12');
 				showOneThing(incomeStr + '22');
 				showOneThing(incomeStr + '24');
 				showOneThing(incomeStr + '32');
 				showOneThing(incomeStr + '35');
-				showOneThing(incomeStr + '37');
+				showOneThing(incomeStr + '37');*/
 
 				// Clear the marginal tax rate value
 				document.getElementById('marginalTaxRate').value='';
