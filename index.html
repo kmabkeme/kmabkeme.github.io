@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="container">
-			<form onsubmit="return calculateAndDisplay();">
+			<form>
 				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
 					<!--Cannot use a btn-group class if I am making the other buttons disappear when I select one-->
 				<label for="tax-filing-status">Tax filing status:</label>
@@ -212,8 +212,9 @@
 
  
 				<div id="submitDIV">
-  					<button type="submit" class="btn btn-secondary">Calculate</button>
+  					<button type="button" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
   				</div>
+  				<!--I think I can use a submit-type button to clear the form-->
 
 				<div>
 					Final value of Roth IRA conversion: <strong>$<output id="finalRothIRA"></output></strong>
