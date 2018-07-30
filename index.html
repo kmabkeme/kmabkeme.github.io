@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="container">
-			<form>
+			<form onsubmit="return calculateAndDisplay();">
 				<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
 					<!--Cannot use a btn-group class if I am making the other buttons disappear when I select one-->
 				<label for="tax-filing-status">Tax filing status:</label>
@@ -212,7 +212,7 @@
 
  
 				<div id="submitDIV">
-  					<button type="submit" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
+  					<button type="submit" class="btn btn-secondary">Calculate</button>
   				</div>
 
 				<div>
