@@ -535,6 +535,7 @@
 				var ctx = document.getElementById('myChart').getContext('2d');
 				var roth = document.getElementById('finalRothIRA').value;
 				var trad = document.getElementById('finalTradIRA').value;
+				var netInvTaxes = document.getElementById('finalTaxesIRANonConvert').value;
 				var chart = new Chart(ctx, {
 				    // The type of chart we want to create
 				    type: 'bar',
@@ -544,14 +545,33 @@
 				        labels: ["Converted to Roth", "Left in IRA"],
 				        datasets: [{
 				            label: "Roth Conversion Vs. Left in IRA",
-				            backgroundColor: 'rgb(255, 99, 132)',
+				            backgroundColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
 				            borderColor: 'rgb(255, 99, 132)',
-				            data: [roth, trad],
+				            data: [roth, trad]
+				        },
+
+				        {
+				            label: "Roth Conversion Taxes Invested",
+				            backgroundColor: ['rgb(99, 132, 255)','rgb(99, 132, 255)'],
+				            borderColor: 'rgb(99, 132, 255)',
+				            data: [0, netInvTaxes]
 				        }]
 				    },
 
+
+
 				    // Configuration options go here
-				    options: {}
+				    options: {
+				    	scales: {
+            				xAxes: [{
+                				stacked: true
+            				}],
+            				yAxes: [{
+                				stacked: true
+            				}]
+        				}
+
+				    }
 				});
 			}
 
