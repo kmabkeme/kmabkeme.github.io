@@ -19,12 +19,12 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>This is some text.</p> 
+  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA?</p> 
 		</div>
 
 		<div class="container">
 			<form>
-				<div class="row">
+				<div class="row" style="border:1px solid #cecece;">
 					<div class="col-sm">
 						<label for="tax-filing-status">Tax filing status:</label><br  />
 
@@ -57,7 +57,7 @@
 
 						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
   							<label class="btn btn-secondary" id="btn10" onclick="marginalTaxRate.value = '10';">
-    							<input type="radio" name="options1" id="btn10a" autocomplete="off"> 0 to $9,525
+    							<input type="radio" name="options1" id="btn10a" autocomplete="off" checked> 0 to $9,525
   							</label>
   							<label class="btn btn-secondary" id="btn12" onclick="marginalTaxRate.value = '12';">
     							<input type="radio" name="options1" id="btn12a" autocomplete="off"> $9,525 to $38,700
@@ -78,6 +78,7 @@
     							<input type="radio" name="options1" id="btn37a" autocomplete="off"> Over $500,000
   							</label>
 						</div>
+
 
 
 						<!-- <div id="incomeDIV" >
@@ -108,6 +109,7 @@
 <!-- 		  					</div>
 
 	  					</div> -->
+
 	  				</div>
 
 	  				<div class="col-sm">
@@ -126,6 +128,8 @@
 				</div>
 
   				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
+
+  				<br />
 
   				<div class="form-group">
 			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
@@ -269,6 +273,7 @@
   					<button type="button" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
   				</div>
   				<!--I think I can use a submit-type button to clear the form-->
+  				<br />
 
 				<div>
 					Final value of Roth IRA conversion: <strong>$<output id="finalRothIRA"></output></strong>
@@ -542,18 +547,28 @@
 
 				    // The data for our dataset
 				    data: {
-				        labels: ["Converted to Roth", "Left in IRA"],
+				        labels: ["Converted to Roth", "Keep in IRA"],
 				        datasets: [{
-				            label: "Roth Conversion Vs. Left in IRA",
+				            label: "Roth Conversion",
 				            backgroundColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
-				            borderColor: 'rgb(255, 99, 132)',
-				            data: [roth, trad]
+				            borderColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
+				            data: [roth, 0]
+				            //backgroundColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
+				            //borderColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
+				            //data: [roth, trad]
+				        },
+
+				        {
+				            label: "Keep in IRA",
+				            backgroundColor: ['rgb(99, 255, 132)','rgb(99, 255, 132)'],
+				            borderColor: ['rgb(99, 255, 132)','rgb(99, 255, 132)'],
+				            data: [0, trad]
 				        },
 
 				        {
 				            label: "Roth Conversion Taxes Invested",
 				            backgroundColor: ['rgb(99, 132, 255)','rgb(99, 132, 255)'],
-				            borderColor: 'rgb(99, 132, 255)',
+				            borderColor: ['rgb(99, 132, 255)','rgb(99, 132, 255)'],
 				            data: [0, netInvTaxes]
 				        }]
 				    },
@@ -562,6 +577,13 @@
 
 				    // Configuration options go here
 				    options: {
+				    	title: {
+            				display: true,
+            				text: 'Net Funds Available Upon Retirement (in U.S. Dollars)'
+        				},
+
+        				responsive: true,
+
 				    	scales: {
             				xAxes: [{
                 				stacked: true
