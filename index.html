@@ -57,25 +57,25 @@
 
 						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
   							<label class="btn btn-secondary" id="btn10" onclick="marginalTaxRate.value = '10';">
-    							<input type="radio" name="options1" autocomplete="off"> 0 to $9,525
+    							<input type="radio" name="options1" id="btn10a" autocomplete="off"> 0 to $9,525
   							</label>
   							<label class="btn btn-secondary" id="btn12" onclick="marginalTaxRate.value = '12';">
-    							<input type="radio" name="options1" autocomplete="off"> $9,525 to $38,700
+    							<input type="radio" name="options1" id="btn12a" autocomplete="off"> $9,525 to $38,700
   							</label>
   							<label class="btn btn-secondary" id="btn22" onclick="marginalTaxRate.value = '22';">
-    							<input type="radio" name="options1" autocomplete="off"> $38,700 to $82,500
+    							<input type="radio" name="options1" id="btn22a" autocomplete="off"> $38,700 to $82,500
   							</label>
   							<label class="btn btn-secondary" id="btn24" onclick="marginalTaxRate.value = '24';">
-    							<input type="radio" name="options1" autocomplete="off"> $82,500 to $157,500
+    							<input type="radio" name="options1" id="btn24a" autocomplete="off"> $82,500 to $157,500
   							</label>
   							<label class="btn btn-secondary" id="btn32" onclick="marginalTaxRate.value = '32';">
-    							<input type="radio" name="options1" autocomplete="off"> $157,500 to $200,000
+    							<input type="radio" name="options1" id="btn32a" autocomplete="off"> $157,500 to $200,000
   							</label>
   							<label class="btn btn-secondary" id="btn35" onclick="marginalTaxRate.value = '35';">
-    							<input type="radio" name="options1" autocomplete="off"> $200,000 to $500,000
+    							<input type="radio" name="options1" id="btn35a" autocomplete="off"> $200,000 to $500,000
   							</label>
   							<label class="btn btn-secondary" id="btn37" onclick="marginalTaxRate.value = '37';">
-    							<input type="radio" name="options1" autocomplete="off"> Over $500,000
+    							<input type="radio" name="options1" id="btn37a" autocomplete="off"> Over $500,000
   							</label>
 						</div>
 
@@ -203,8 +203,31 @@
 
 
 				<label for="interest-rate">Select your investment risk profile and likely annual rate of return:</label>
+				<br />
 
-				<div id="interest-rate" class="panel-body">
+				<div id="interest-rate" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '2.5';">
+    					<input type="radio" name="options2" id="rate2.5" autocomplete="off" checked> Short-term - 2.5%
+  					</label>
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '3.5';">
+    					<input type="radio" name="options2" id="rate3.5" autocomplete="off"> Conservative - 3.5%
+  					</label>
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '4.4';">
+    					<input type="radio" name="options2" id="rate4.4" autocomplete="off"> Moderately Conservative - 4.4%
+  					</label>
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '5.2';">
+    					<input type="radio" name="options2" id="rate5.2" autocomplete="off"> Moderate - 5.2%
+  					</label>
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '6.0';">
+    					<input type="radio" name="options2" id="rate6.0" autocomplete="off"> Moderately Aggressive - 6.0%
+  					</label>
+  					<label class="btn btn-secondary" onclick="investIntRate.value = '6.6';">
+    					<input type="radio" name="options2" id="rate6.6" autocomplete="off"> Aggressive - 6.6%
+  					</label>
+				</div>
+
+
+<!-- 				<div id="interest-rate" class="panel-body">
 					<div id="divIntRate2.5">
   						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('3.5','4.4','5.2','6','6.6');investIntRate.value = '2.5';">Short-term - 2.5%</button>
   					</div>
@@ -223,7 +246,7 @@
   					<div id="divIntRate6.6">
   						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6');investIntRate.value = '6.6';">Aggressive - 6.6%</button>
   					</div>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 			    	<label for="investIntRate">Likely Rate of Return:</label>
@@ -419,7 +442,7 @@
 				hideOneThing(incomeStr + btn5);
 				hideOneThing(incomeStr + btn6);
 			}
-
+/*
 			function hideOtherInterestRates(btn1, btn2, btn3, btn4, btn5) {
 				var riskProfileStr = 'divIntRate'
 				hideOneThing(riskProfileStr + btn1);
@@ -427,7 +450,7 @@
 				hideOneThing(riskProfileStr + btn3);
 				hideOneThing(riskProfileStr + btn4);
 				hideOneThing(riskProfileStr + btn5);
-			}
+			}*/
 
 			function hideOneThing(thingToHide) {
     			var x = document.getElementById(thingToHide);
@@ -458,18 +481,22 @@
     			// For the amount converted to the Roth IRA
     			var finalCalc = FVcalc(convertValue,interestRateValue,yearsValue);
     			var roth = finalCalc;
-    			document.getElementById('finalRothIRA').value=finalCalc;
+    			//document.getElementById('finalRothIRA').value=finalCalc.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    			document.getElementById('finalRothIRA').value=finalCalc.toFixed(2);
 
     			// If you left the amount in the traditional IRA and allowed it to compound there
     			// But then you'll have to pay taxes on this amount
     			var trad = finalCalc * (1 - margTaxRateFuture/100);
-    			document.getElementById('finalTradIRA').value = trad;
+    			//document.getElementById('finalTradIRA').value = trad.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    			document.getElementById('finalTradIRA').value = trad.toFixed(2);
 
     			// The amount of taxes that need to be paid immediately for the Roth IRA conversion come out of other
     			// funds. If one does not convert the money to a Roth IRA, then this money could be invested in a
     			// regular investment account in which taxes apply to the capital gains only.
     			var investedTaxes = margTaxRateToday/100*convertValue;
-    			document.getElementById('finalTaxesIRANonConvert').value=(FVcalc(investedTaxes,interestRateValue,yearsValue) - investedTaxes) * (1 - 0.15) + investedTaxes;
+    			var netInvTaxes = (FVcalc(investedTaxes,interestRateValue,yearsValue) - investedTaxes) * (1 - 0.15) + investedTaxes;
+    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2);
+/*    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');*/
 
 				//addData('myChart', [roth, trad]);
 				drawBarChart();
@@ -514,9 +541,9 @@
 
 				    // The data for our dataset
 				    data: {
-				        labels: ["Convert to Roth IRA", "Leave in Traditional IRA"],
+				        labels: ["Converted to Roth", "Left in IRA"],
 				        datasets: [{
-				            label: "My First dataset",
+				            label: "Roth Conversion Vs. Left in IRA",
 				            backgroundColor: 'rgb(255, 99, 132)',
 				            borderColor: 'rgb(255, 99, 132)',
 				            data: [roth, trad],
