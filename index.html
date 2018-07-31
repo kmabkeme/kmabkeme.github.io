@@ -55,60 +55,60 @@
 
 				 		<label for="income-range">Adjusted Gross Income for 2018:</label><br />
 
-						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-  							<label class="btn btn-secondary" id="btn10" onclick="marginalTaxRate.value = '10';">
+<!-- 						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+  							<label class="btn btn-secondary" for="btn10a" id="btn10" onclick="marginalTaxRate.value = '10';">
     							<input type="radio" name="options1" id="btn10a" autocomplete="off" checked> 0 to $9,525
   							</label>
-  							<label class="btn btn-secondary" id="btn12" onclick="marginalTaxRate.value = '12';">
+  							<label class="btn btn-secondary" for="btn12a" id="btn12" onclick="marginalTaxRate.value = '12';">
     							<input type="radio" name="options1" id="btn12a" autocomplete="off"> $9,525 to $38,700
   							</label>
-  							<label class="btn btn-secondary" id="btn22" onclick="marginalTaxRate.value = '22';">
+  							<label class="btn btn-secondary" for="btn22a" id="btn22" onclick="marginalTaxRate.value = '22';">
     							<input type="radio" name="options1" id="btn22a" autocomplete="off"> $38,700 to $82,500
   							</label>
-  							<label class="btn btn-secondary" id="btn24" onclick="marginalTaxRate.value = '24';">
+  							<label class="btn btn-secondary" for="btn24a" id="btn24" onclick="marginalTaxRate.value = '24';">
     							<input type="radio" name="options1" id="btn24a" autocomplete="off"> $82,500 to $157,500
   							</label>
-  							<label class="btn btn-secondary" id="btn32" onclick="marginalTaxRate.value = '32';">
+  							<label class="btn btn-secondary" for="btn32a" id="btn32" onclick="marginalTaxRate.value = '32';">
     							<input type="radio" name="options1" id="btn32a" autocomplete="off"> $157,500 to $200,000
   							</label>
-  							<label class="btn btn-secondary" id="btn35" onclick="marginalTaxRate.value = '35';">
+  							<label class="btn btn-secondary" for="btn35a" id="btn35" onclick="marginalTaxRate.value = '35';">
     							<input type="radio" name="options1" id="btn35a" autocomplete="off"> $200,000 to $500,000
   							</label>
-  							<label class="btn btn-secondary" id="btn37" onclick="marginalTaxRate.value = '37';">
+  							<label class="btn btn-secondary" for="btn37a" id="btn37" onclick="marginalTaxRate.value = '37';">
     							<input type="radio" name="options1" id="btn37a" autocomplete="off"> Over $500,000
   							</label>
-						</div>
+						</div> -->
 
 
 
-						<!-- <div id="incomeDIV" >
+						<div id="incomeDIV" >
 
 		  					<div id="income-range" class="panel-body">
-		  						<div id="divIncome10"> -->
-<!-- 									<button type="button" id="btn10" class="btn btn-secondary" onclick="marginalTaxRate.value = '10';">10% rate income range</button>
- --><!-- 								</div>
+<!-- 		  						<div id="divIncome10"> -->
+									<button type="button" id="btn10" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
+ <!-- 								</div>
 								<div id="divIncome12"> -->
-<!-- 									<button type="button" id="btn12" class="btn btn-secondary" onclick="marginalTaxRate.value = '12';">12% rate income range</button>
- --><!-- 								</div>
+									<button type="button" id="btn12" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '12';"> $9,525 to $38,700 </button>
+ <!-- 								</div>
 								<div id="divIncome22"> -->
-<!-- 									<button type="button" id="btn22" class="btn btn-secondary" onclick="marginalTaxRate.value = '22';">22% rate income range</button>
- --><!-- 								</div>
+									<button type="button" id="btn22" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn24','btn32','btn35','btn37');marginalTaxRate.value = '22';"> $38,700 to $82,500 </button>
+ <!-- 								</div>
 								<div id="divIncome24"> -->
-<!-- 									<button type="button" id="btn24" class="btn btn-secondary" onclick="marginalTaxRate.value = '24';">24% rate income range</button>
- --><!-- 								</div>
+ 									<button type="button" id="btn24" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn32','btn35','btn37');marginalTaxRate.value = '24';"> $82,500 to $157,500 </button>
+ <!-- 								</div>
 								<div id="divIncome32"> -->
-<!-- 									<button type="button" id="btn32" class="btn btn-secondary" onclick="marginalTaxRate.value = '32';">32% rate income range</button>
- --><!-- 								</div>
+									<button type="button" id="btn32" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn35','btn37');marginalTaxRate.value = '32';"> $157,500 to $200,000 </button>
+ <!-- 								</div>
 								<div id="divIncome35"> -->
-<!-- 									<button type="button" id="btn35" class="btn btn-secondary" onclick="marginalTaxRate.value = '35';">35% rate income range</button>
- --><!-- 								</div>
+ 									<button type="button" id="btn35" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn37');marginalTaxRate.value = '35';"> $200,000 to $500,000 </button>
+ <!-- 								</div>
 								<div id="divIncome37"> -->
-<!-- 									<button type="button" id="btn37" class="btn btn-secondary" onclick="marginalTaxRate.value = '37';">37% rate income range</button>
- --><!-- 								</div> -->
+ 									<button type="button" id="btn37" class="btn btn-secondary" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn35');marginalTaxRate.value = '37';"> Over $500,000 </button>
+ <!-- 								</div> -->
 
-<!-- 		  					</div>
+		  					</div>
 
-	  					</div> -->
+	  					</div>
 
 	  				</div>
 
@@ -123,13 +123,28 @@
 		    					</div>
 					    	</div>
 						</div>
+
+
+						<br />
+
+		  				<div class="form-group">
+					    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
+					    	<div class="input-group">
+					    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate">
+					    		<div class="input-group-append">
+		      						<div class="input-group-text">%</div>
+		    					</div>
+					    	</div>
+						</div>
+
+
 					</div>
 
 				</div>
 
   				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
 
-  				<br />
+<!--   				<br />
 
   				<div class="form-group">
 			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
@@ -139,9 +154,9 @@
       						<div class="input-group-text">%</div>
     					</div>
 			    	</div>
-				</div>
+				</div> -->
 
-
+				<br />
 
 				<div class="btn-group-toggle" data-toggle="buttons">
 					<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
@@ -220,13 +235,13 @@
     					<input type="radio" name="options2" id="rate4.4" autocomplete="off"> Moderately Conservative - 4.4%
   					</label>
   					<label class="btn btn-secondary" onclick="investIntRate.value = '5.2';">
-    					<input type="radio" name="options2" id="rate5.2" autocomplete="off"> Moderate - 5.2%
+    					<input type="radio" name="options2" id="rate5.2" autocomplete="off"> Moderate - 5.2% 
   					</label>
   					<label class="btn btn-secondary" onclick="investIntRate.value = '6.0';">
-    					<input type="radio" name="options2" id="rate6.0" autocomplete="off"> Moderately Aggressive - 6.0%
+    					<input type="radio" name="options2" id="rate6.0" autocomplete="off"> Moderately Aggressive - 6.0% 
   					</label>
   					<label class="btn btn-secondary" onclick="investIntRate.value = '6.6';">
-    					<input type="radio" name="options2" id="rate6.6" autocomplete="off"> Aggressive - 6.6%
+    					<input type="radio" name="options2" id="rate6.6" autocomplete="off"> Aggressive - 6.6% 
   					</label>
 				</div>
 
@@ -438,7 +453,7 @@
 
 			}
 
-			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
+/*			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
 				var incomeStr = 'divIncome'
 				hideOneThing(incomeStr + btn1);
 				hideOneThing(incomeStr + btn2);
@@ -446,6 +461,16 @@
 				hideOneThing(incomeStr + btn4);
 				hideOneThing(incomeStr + btn5);
 				hideOneThing(incomeStr + btn6);
+			}*/
+
+			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
+				var incomeStr = 'divIncome'
+				disableOneThing(btn1);
+				disableOneThing(btn2);
+				disableOneThing(btn3);
+				disableOneThing(btn4);
+				disableOneThing(btn5);
+				disableOneThing(btn6);
 			}
 /*
 			function hideOtherInterestRates(btn1, btn2, btn3, btn4, btn5) {
@@ -463,6 +488,15 @@
         			x.style.display = "block";
     			} else {
         			x.style.display = "none";
+    			}
+			}
+
+			function disableOneThing(thingToDisable) {
+    			var x = document.getElementById(thingToDisable);
+    			if (x.disabled === true) {
+        			document.getElementById(thingToDisable).disabled = false;
+    			} else {
+        			document.getElementById(thingToDisable).disabled = true;
     			}
 			}
 
@@ -582,7 +616,7 @@
             				text: 'Net Funds Available Upon Retirement (in U.S. Dollars)'
         				},
 
-        				responsive: true,
+        				//responsive: true,
 
 				    	scales: {
             				xAxes: [{
