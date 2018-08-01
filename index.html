@@ -42,73 +42,34 @@
     							<input type="radio" name="options" id="headHousehold" autocomplete="off"> Head of household
   							</label>
 						</div>
-
-<!--  						<div id="tax-filing-status" class="panel-body btn-group-vertical btn-group-toggle" data-toggle="buttons">
-		  					<button type="button" id="single" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('single');">Single</button>
-		  					<button type="button" id="marriedFilingJointly" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');">Married, filing jointly</button>
-		  					<button type="button" id="marriedFilingSeparately" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');">Married, filing separately</button>
-		  					<button type="button" id="headHousehold" class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('headHousehold');">Head of household</button>
-						</div>   -->
 					</div>
 
 				 	<div class="col-sm">
 
 				 		<label for="income-range">Adjusted Gross Income for 2018:</label><br />
 
-<!-- 						<div id="income-range" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-  							<label class="btn btn-secondary" for="btn10a" id="btn10" onclick="marginalTaxRate.value = '10';">
-    							<input type="radio" name="options1" id="btn10a" autocomplete="off" checked> 0 to $9,525
-  							</label>
-  							<label class="btn btn-secondary" for="btn12a" id="btn12" onclick="marginalTaxRate.value = '12';">
-    							<input type="radio" name="options1" id="btn12a" autocomplete="off"> $9,525 to $38,700
-  							</label>
-  							<label class="btn btn-secondary" for="btn22a" id="btn22" onclick="marginalTaxRate.value = '22';">
-    							<input type="radio" name="options1" id="btn22a" autocomplete="off"> $38,700 to $82,500
-  							</label>
-  							<label class="btn btn-secondary" for="btn24a" id="btn24" onclick="marginalTaxRate.value = '24';">
-    							<input type="radio" name="options1" id="btn24a" autocomplete="off"> $82,500 to $157,500
-  							</label>
-  							<label class="btn btn-secondary" for="btn32a" id="btn32" onclick="marginalTaxRate.value = '32';">
-    							<input type="radio" name="options1" id="btn32a" autocomplete="off"> $157,500 to $200,000
-  							</label>
-  							<label class="btn btn-secondary" for="btn35a" id="btn35" onclick="marginalTaxRate.value = '35';">
-    							<input type="radio" name="options1" id="btn35a" autocomplete="off"> $200,000 to $500,000
-  							</label>
-  							<label class="btn btn-secondary" for="btn37a" id="btn37" onclick="marginalTaxRate.value = '37';">
-    							<input type="radio" name="options1" id="btn37a" autocomplete="off"> Over $500,000
-  							</label>
-						</div> -->
-
-
-
 						<div id="incomeDIV" >
 
 		  					<div id="income-range" class="panel-body">
-<!-- 		  						<div id="divIncome10"> -->
-									<button type="button" id="btn10" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
- <!-- 								</div>
-								<div id="divIncome12"> -->
-									<button type="button" id="btn12" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '12';"> $9,525 to $38,700 </button>
- <!-- 								</div>
-								<div id="divIncome22"> -->
-									<button type="button" id="btn22" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn24','btn32','btn35','btn37');marginalTaxRate.value = '22';"> $38,700 to $82,500 </button>
- <!-- 								</div>
-								<div id="divIncome24"> -->
- 									<button type="button" id="btn24" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn32','btn35','btn37');marginalTaxRate.value = '24';"> $82,500 to $157,500 </button>
- <!-- 								</div>
-								<div id="divIncome32"> -->
-									<button type="button" id="btn32" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn35','btn37');marginalTaxRate.value = '32';"> $157,500 to $200,000 </button>
- <!-- 								</div>
-								<div id="divIncome35"> -->
- 									<button type="button" id="btn35" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn37');marginalTaxRate.value = '35';"> $200,000 to $500,000 </button>
- <!-- 								</div>
-								<div id="divIncome37"> -->
- 									<button type="button" id="btn37" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn35');marginalTaxRate.value = '37';"> Over $500,000 </button>
- <!-- 								</div> -->
+								<button type="button" id="btn10" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
 
+								<button type="button" id="btn12" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '12';"> $9,525 to $38,700 </button>
+
+								<button type="button" id="btn22" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn24','btn32','btn35','btn37');marginalTaxRate.value = '22';"> $38,700 to $82,500 </button>
+
+ 								<button type="button" id="btn24" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn32','btn35','btn37');marginalTaxRate.value = '24';"> $82,500 to $157,500 </button>
+
+								<button type="button" id="btn32" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn35','btn37');marginalTaxRate.value = '32';"> $157,500 to $200,000 </button>
+
+ 								<button type="button" id="btn35" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn37');marginalTaxRate.value = '35';"> $200,000 to $500,000 </button>
+
+ 								<button type="button" id="btn37" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn35');marginalTaxRate.value = '37';"> Over $500,000 </button>
 		  					</div>
 
 	  					</div>
+	  					<div class="row">
+								<br />
+						</div>
 
 	  				</div>
 
@@ -144,50 +105,93 @@
 
   				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
 
-<!--   				<br />
-
-  				<div class="form-group">
-			    	<label for="formEstFutureTaxRate">Estimated federal income tax rate at time of first withdrawal</label>
-			    	<div class="input-group">
-			    		<input type="number" max="100" min="0" class="form-control col-2" id="formEstFutureTaxRate">
-			    		<div class="input-group-append">
-      						<div class="input-group-text">%</div>
-    					</div>
-			    	</div>
-				</div> -->
-
 				<br />
 
-				<div class="btn-group-toggle" data-toggle="buttons">
-					<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
-  					<label class="btn btn-secondary active">
-    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
-    					    <span class="label-yes">Yes</span>
-    						<span class="label-no">No</span>
-  					</label>
-				</div>
+				<div class="row" style="border:1px solid #cecece;">
+					<div class="col-sm">
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label for="anyStateTaxes">Would you like to include state taxes in your calculation?</label><br />
+		  					<label class="btn btn-secondary active">
+		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
+		    					    <span class="label-yes">Yes</span>
+		    						<span class="label-no">No</span>
+		  					</label>
+						</div>
+						<div class="row">
+								<br />
+						</div>
+					</div>
 
-				<div id="NonDeductIRADIV" class="hidden">
-					<div class="form-group">
-				    	<label for="formNondeductibleIRA">Amount of non-deductible contributions</label>
-				    	<div class="input-group">
-			    	    	<div class="input-group-prepend">
-      							<div class="input-group-text">$</div>
-    						</div>
-				    		<input type="number" min="1" class="form-control col-4" id="formNondeductibleIRA">
-				    	</div>
-				  	</div>
+					<div class="col-sm">
+						<div id="StateTaxesDIV" class="hidden">
+							<div class="form-group">
+						    	<label for="formStateTaxRateToday">Your state tax rate for 2018</label>
+						    	<div class="input-group">
+						    		<input type="number" min="0" class="form-control col-4" id="formStateTaxRateToday">
+						    		<div class="input-group-append">
+		      							<div class="input-group-text">%</div>
+		    						</div>
+						    	</div>
+						  	</div>
 
-					<div class="form-group">
-				    	<label for="formNonRothIRAValue">Combined value of your non-Roth IRAs</label>
-				    	<div class="input-group">
-				    	    <div class="input-group-prepend">
-	      						<div class="input-group-text">$</div>
-	    					</div>
-				    		<input type="number" min="0" class="form-control col-4" id="formNonRothIRAValue">
-				    	</div>
-					</div>  			
-			  	</div>	
+
+							<div class="form-group">
+						    	<label for="formStateTaxRateFuture">Estimated state tax rate at time of first withdrawal</label>
+						    	<div class="input-group">
+						    		<input type="number" min="0" class="form-control col-4" id="formStateTaxRateFuture">
+						    		<div class="input-group-append">
+		      							<div class="input-group-text">%</div>
+		    						</div>
+						    	</div>
+							</div>  			
+					  	</div>
+				  	</div>	
+			  	</div>
+
+			  	<br />
+
+				<div class="row" style="border:1px solid #cecece;">
+					<div class="col-sm">
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
+		  					<label class="btn btn-secondary active">
+		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
+		    					    <span class="label-yes">Yes</span>
+		    						<span class="label-no">No</span>
+		  					</label>
+						</div>
+						<div class="row">
+								<br />
+						</div>
+					</div>
+
+					<div class="col-sm">
+						<div id="NonDeductIRADIV" class="hidden">
+							<div class="form-group">
+						    	<label for="formNondeductibleIRA">Amount of non-deductible contributions to IRAs (i.e., you already paid taxes on these)</label>
+						    	<div class="input-group">
+					    	    	<div class="input-group-prepend">
+		      							<div class="input-group-text">$</div>
+		    						</div>
+						    		<input type="number" min="1" class="form-control col-4" id="formNondeductibleIRA">
+						    	</div>
+						  	</div>
+
+
+							<div class="form-group">
+						    	<label for="formNonRothIRAValue">Combined value of all your non-Roth IRAs, both deductible and non-deductible</label>
+						    	<div class="input-group">
+						    	    <div class="input-group-prepend">
+			      						<div class="input-group-text">$</div>
+			    					</div>
+						    		<input type="number" min="0" class="form-control col-4" id="formNonRothIRAValue">
+						    	</div>
+							</div>  			
+					  	</div>
+				  	</div>	
+			  	</div>
+
+			  	<br />
 
 			  	<div class="form-group">
 			    	<label for="formConvertValue">Amount of IRA that you would like to convert to Roth IRA:</label>
@@ -246,27 +250,6 @@
 				</div>
 
 
-<!-- 				<div id="interest-rate" class="panel-body">
-					<div id="divIntRate2.5">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('3.5','4.4','5.2','6','6.6');investIntRate.value = '2.5';">Short-term - 2.5%</button>
-  					</div>
-  					<div id="divIntRate3.5">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','4.4','5.2','6','6.6');investIntRate.value = '3.5';">Conservative - 3.5%</button>
-  					</div>
-  					<div id="divIntRate4.4">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','5.2','6','6.6');investIntRate.value = '4.4';">Moderately Conservative - 4.4%</button>
-  					</div>
-  					<div id="divIntRate5.2">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','6','6.6');investIntRate.value = '5.2';">Moderate - 5.2%</button>
-  					</div>
-  					<div id="divIntRate6">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6.6');investIntRate.value = '6';">Moderately Aggressive - 6.0%</button>
-  					</div>
-  					<div id="divIntRate6.6">
-  						<button type="button" class="btn btn-secondary" onclick="hideOtherInterestRates('2.5','3.5','4.4','5.2','6');investIntRate.value = '6.6';">Aggressive - 6.6%</button>
-  					</div>
-				</div> -->
-
 				<div class="form-group">
 			    	<label for="investIntRate">Likely Rate of Return:</label>
 			    	<div class="input-group">
@@ -300,8 +283,9 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
  var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
  //var margTaxRateFutureLabel = document.getElementById('futureTaxLabel').innerText;
 
- validateInput(margTaxRateToday);
- validateInput(margTaxRateFuture);
+ var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
+
+ alert(nondeductIRAChecked);
 
     //if (isNaN(margTaxRateFuture) || margTaxRateFuture < 1 || margTaxRateFuture > 50) {
     //				alert(margTaxRateFutureLabel);
@@ -328,26 +312,6 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 				<div>
 					Final value of investing the money that would have gone to taxes for the IRA conversion: <strong>$<output id="finalTaxesIRANonConvert"></output></strong>
 				</div>
-
-
-
-<!--2018-07-29, KA - Commenting out stuff that is in here because I was testing it out-->
-<!--   				<br />
-
-  				<input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
-   				<output name="ageOutputName" id="ageOutputId">24</output>
-
-
-			  	<div class="form-group">
-			    	<label for="formGroupExampleInput">Example label</label>
-			    	<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-				</div>
-				<div class="form-group">
-			    	<label for="formGroupExampleInput2">Another label</label>
-			    	<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-			  	</div> -->
-			</form>
-		</div>
 
 		<!--<div class="container" style="position: relative; height:20vh; width:40vw">-->
 		<!--<div class="container" style="position: relative; height:90vh; width:90vw">-->
@@ -509,18 +473,45 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 
 			function calculateAndDisplay() {
     			var margTaxRateToday = document.getElementById('marginalTaxRate').value;
-
     			var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
+
+    			var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value;
+    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value;
 
     			var tradIRAValue = document.getElementById('formNonRothIRAValue').value;
     			var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
     			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value;
+
     			var convertValue = document.getElementById('formConvertValue').value;
     			var yearsValue = document.getElementById('formYears').value;
     			var interestRateValue = document.getElementById('investIntRate').value;
 
     			// We need to validate that we have 
     			//var margTaxRateFutureValid = validateInput(margTaxRateFuture,1,50,margTaxRateFutureLabel);
+
+    			// If we have money in both nondeductible IRAs and traditional IRAs, then what is converted to a
+    			// Roth IRA needs to be done in a prorated fashion according to the proportions of the two funds
+    			// which reduces the tax burden.
+    			// Cf. https://www.betterment.com/resources/roth-ira-rules-smart-ways-to-avoid-taxes-on-a-conversion/
+    			// Or https://www.bogleheads.org/wiki/Backdoor_Roth_IRA
+
+    			// We'll set prorateTaxFactor = 1.0 and it will reduce if we have nonzero nondeductible IRA values
+
+    			var prorateTaxFactor = 1.0;
+    			if (!isNaN(nondeductIRAValue ) && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
+    				prorateTaxFactor  = 1.0 - nondeductIRAValue/tradIRAValue;
+    				//alert(prorateTaxFactor);
+    			}
+
+    			// If we include state taxes, we need to modify the numbers that go into the calculations below
+
+    			var totalTaxRateToday = margTaxRateToday;
+    			var totalTaxRateFuture = margTaxRateFuture;
+    			if (!isNaN(stateTaxRateToday) && stateTaxRateToday > 0 && !isNaN(stateTaxRateFuture) && stateTaxRateFuture > 0) {
+    				totalTaxRateToday  = margTaxRateToday + stateTaxRateToday;
+    				totalTaxRateFuture  = margTaxRateFuture + stateTaxRateFuture;    				
+    				alert(totalTaxRateToday);
+    			}
 
 
     			//if (margTaxRateFutureValid) {
@@ -535,14 +526,16 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 
 	    			// If you left the amount in the traditional IRA and allowed it to compound there
 	    			// But then you'll have to pay taxes on this amount
-	    			var trad = finalCalc * (1 - margTaxRateFuture/100);
+	    			//var trad = finalCalc * (1 - margTaxRateFuture/100);
+	    			var trad = finalCalc * (1 - totalTaxRateFuture/100);
 	    			//document.getElementById('finalTradIRA').value = trad.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 	    			document.getElementById('finalTradIRA').value = trad.toFixed(2);
 
 	    			// The amount of taxes that need to be paid immediately for the Roth IRA conversion come out of other
 	    			// funds. If one does not convert the money to a Roth IRA, then this money could be invested in a
 	    			// regular investment account in which taxes apply to the capital gains only.
-	    			var investedTaxes = margTaxRateToday/100*convertValue;
+	    			//var investedTaxes = margTaxRateToday/100*convertValue * prorateTaxFactor;
+	    			var investedTaxes = totalTaxRateToday/100*convertValue * prorateTaxFactor;
 	    			var netInvTaxes = (FVcalc(investedTaxes,interestRateValue,yearsValue) - investedTaxes) * (1 - 0.15) + investedTaxes;
 	    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2);
 	/*    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');*/
