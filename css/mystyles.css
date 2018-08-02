@@ -27,3 +27,7 @@ input:checked ~ .label-no {
 #interest-rate .btn{
     width:250px;
 }
+
+#marginalTaxRate.form-control {
+	background: bg-primary;
+}

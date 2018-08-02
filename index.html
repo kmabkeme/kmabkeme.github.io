@@ -19,26 +19,26 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Will paying taxes today on converted funds lead to better future returns?</p> 
+  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Enter data requested below in order to determine whether moving funds and paying taxes today will lead to having more money for your retirement.</p> 
 		</div>
 
 		<div class="container">
 			<form>
-				<div class="row" style="border:3px solid #cecece;">
+				<div class="row" style="border:3px solid #0066ff;">
 					<div class="col-sm">
 						<label for="tax-filing-status">Federal tax filing status:</label><br  />
 
 						<div id="tax-filing-status" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('single');">
+  							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('single');">
     							<input type="radio" name="options" id="single" autocomplete="off" checked> Single
   							</label>
-  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');">
+  							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('marriedFilingJointly');">
     							<input type="radio" name="options" id="marriedFilingJointly" autocomplete="off"> Married, filing jointly
   							</label>
-  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');">
+  							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('marriedFilingSeparately');">
     							<input type="radio" name="options" id="marriedFilingSeparately" autocomplete="off"> Married, filing separately
   							</label>
-  							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('headHousehold');">
+  							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('headHousehold');">
     							<input type="radio" name="options" id="headHousehold" autocomplete="off"> Head of household
   							</label>
 						</div>
@@ -48,25 +48,22 @@
 
 				 		<label for="income-range">Adjusted Gross Income for 2018:</label><br />
 
-						<div id="incomeDIV" >
+		  				<div id="income-range" class="panel-body">
+							<button type="button" id="btn10" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
 
-		  					<div id="income-range" class="panel-body">
-								<button type="button" id="btn10" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
+							<button type="button" id="btn12" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '12';"> $9,525 to $38,700 </button>
 
-								<button type="button" id="btn12" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '12';"> $9,525 to $38,700 </button>
+							<button type="button" id="btn22" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn24','btn32','btn35','btn37');marginalTaxRate.value = '22';"> $38,700 to $82,500 </button>
 
-								<button type="button" id="btn22" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn24','btn32','btn35','btn37');marginalTaxRate.value = '22';"> $38,700 to $82,500 </button>
+ 							<button type="button" id="btn24" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn32','btn35','btn37');marginalTaxRate.value = '24';"> $82,500 to $157,500 </button>
 
- 								<button type="button" id="btn24" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn32','btn35','btn37');marginalTaxRate.value = '24';"> $82,500 to $157,500 </button>
+							<button type="button" id="btn32" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn35','btn37');marginalTaxRate.value = '32';"> $157,500 to $200,000 </button>
 
-								<button type="button" id="btn32" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn35','btn37');marginalTaxRate.value = '32';"> $157,500 to $200,000 </button>
+ 							<button type="button" id="btn35" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn37');marginalTaxRate.value = '35';"> $200,000 to $500,000 </button>
 
- 								<button type="button" id="btn35" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn37');marginalTaxRate.value = '35';"> $200,000 to $500,000 </button>
+ 							<button type="button" id="btn37" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn35');marginalTaxRate.value = '37';"> Over $500,000 </button>
+		  				</div>
 
- 								<button type="button" id="btn37" class="btn btn-secondary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn10','btn12','btn22','btn24','btn32','btn35');marginalTaxRate.value = '37';"> Over $500,000 </button>
-		  					</div>
-
-	  					</div>
 	  					<div class="row">
 								<br />
 						</div>
@@ -78,7 +75,7 @@
 		  				<div class="form-group">
 					    	<label for="marginalTaxRate">Marginal Tax Rate for 2018</label>
 					    	<div class="input-group">
-					    		<input type="number" max="37" min="10" class="form-control col-2" id="marginalTaxRate" value="24"readonly>
+					    		<input type="number" max="37" min="10" class="form-control col-2" id="marginalTaxRate" readonly>
 					    		<div class="input-group-append">
 		      						<div class="input-group-text">%</div>
 		    					</div>
@@ -102,8 +99,6 @@
 					</div>
 
 				</div>
-
-  				<!--Do onsubmit = "return false" if I have problems with the form fields resetting after submit-->
 
 				<br />
 
@@ -274,6 +269,13 @@
   		<div class="container">
   			<br />
 
+  			<div class="alert alert-warning hidden" role="alert" id="2018TaxAlert">
+  				Please select a Federal tax filing status and Adjusted Gross Income range for 2018 to get your Marginal Tax Rate for 2018.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#2018TaxAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
 			<div class="alert alert-warning hidden" role="alert" id="futureTaxAlert">
   				Please enter a number between 0 and 50 for Estimated federal income tax rate at time of first withdrawal.
   				<button type="button" class="close" aria-label="Close" onclick="$('#futureTaxAlert').hide();">
@@ -315,10 +317,18 @@
 
 				var validFlag = true;
 
- 				// No need to check on the 2018 marginal tax rate, because that is selected by radio buttons
- 				// and thus will always have a valid value.
+				// Check that a 2018 marginal tax rate has been selected. The values that can be in this field
+				// are dictated by the Federal Tax Filing Status buttons and Income Tax Rate buttons, so there is
+				// no need to check ranges, only whether there is a blank in the field.
+ 				var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 
- 				// First, make sure there's a valid value in the future tax rate field. 
+ 				if (margTaxRateToday == '')
+ 				{
+ 					$('#2018TaxAlert').show();
+ 					validFlag = false;
+ 				}
+
+ 				// Make sure there's a valid value in the future tax rate field. 
  				// If not, then let's show an alert and return false so that we don't plot something wonky.
  				var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
 
@@ -445,8 +455,6 @@
 				var btn35Text;
 				var btn37Text;
 
-				var incomeStr = 'divIncome'
-
 				switch (taxStatusPicked) {
 
 					case 'single':
@@ -494,14 +502,12 @@
 				document.getElementById('btn32').innerText = btn32Text;
 				document.getElementById('btn35').innerText = btn35Text;
 				document.getElementById('btn37').innerText = btn37Text;
-
-				// Reset the marginal tax rate value to 10% so it never has a blank value
-				document.getElementById('marginalTaxRate').value='10';
-
 			}
 
+			// Radio buttons were not working correctly for the list of incomes, so I had to come up with an
+			// alternative solution that would allow a selected value to persist as a selected button and disable
+			// the other buttons.
 			function hideOtherIncomes(btn1, btn2, btn3, btn4, btn5, btn6) {
-				var incomeStr = 'divIncome'
 				disableOneThing(btn1);
 				disableOneThing(btn2);
 				disableOneThing(btn3);
@@ -548,8 +554,13 @@
     			var yearsValue = document.getElementById('formYears').value;
     			var interestRateValue = document.getElementById('investIntRate').value;
 
-    			// We need to validate that we have 
-    			//var margTaxRateFutureValid = validateInput(margTaxRateFuture,1,50,margTaxRateFutureLabel);
+    			// Let's first hide all error messages, if we didn't click them away already
+    			$('#2018TaxAlert').hide();
+    			$('#futureTaxAlert').hide();
+    			$('#stateTaxAlert').hide();
+    			$('#IRAAlert').hide();
+    			$('#amtConvertAlert').hide();
+    			$('#yearsAlert').hide();
 
     			// If we have money in both nondeductible IRAs and traditional IRAs, then what is converted to a
     			// Roth IRA needs to be done in a prorated fashion according to the proportions of the two funds
