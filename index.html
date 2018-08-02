@@ -19,14 +19,14 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA?</p> 
+  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Will paying taxes today on converted funds lead to better future returns?</p> 
 		</div>
 
 		<div class="container">
 			<form>
 				<div class="row" style="border:3px solid #cecece;">
 					<div class="col-sm">
-						<label for="tax-filing-status">Tax filing status:</label><br  />
+						<label for="tax-filing-status">Federal tax filing status:</label><br  />
 
 						<div id="tax-filing-status" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
   							<label class="btn btn-secondary" onclick="hideOtherTaxFilingStatuses('single');">
@@ -680,7 +680,8 @@
 				    options: {
 				    	title: {
             				display: true,
-            				text: 'Net Funds Available Upon Retirement (in U.S. Dollars)'
+            				text: 'Net Funds Available Upon Retirement (in U.S. Dollars)',
+            				fontsize: 48
         				},
 
         				//responsive: true,
