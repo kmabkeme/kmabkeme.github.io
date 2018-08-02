@@ -297,6 +297,13 @@
   				</button>
 			</div>
 
+			<div class="alert alert-danger hidden" role="alert" id="IRATotalLessThanNondeductAlert">
+  				Please enter a value for the nondeductible IRA that is less than or equal to the total IRA value.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#IRATotalLessThanNondeductAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
 			<div class="alert alert-warning hidden" role="alert" id="amtConvertAlert">
   				Please enter a number between 1 and 1000000 for the Amount of IRA that you want to convert to a Roth IRA.
   				<button type="button" class="close" aria-label="Close" onclick="$('#amtConvertAlert').hide();">
@@ -379,13 +386,18 @@
     			if (totalIRAValue == '' && nondeductIRAValue == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(totalIRAValue) || numTotalIRA < 1 || numTotalIRA > 1000000 || numTotalIRA < numNondeductIRA || isNaN(nondeductIRAValue) || numNondeductIRA < 1 || numNondeductIRA > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
+    			else if (isNaN(totalIRAValue) || numTotalIRA < 1 || numTotalIRA > 1000000 || isNaN(nondeductIRAValue) || numNondeductIRA < 1 || numNondeductIRA > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
 
     				//alert(nondeductIRAValue + ' ' + tradIRAValue);
 
  					$('#IRAAlert').show();
  					validFlag = false;
     			}
+    			else if (numTotalIRA < numNondeductIRA)
+ 				{
+ 					$('#IRATotalLessThanNondeductAlert').show();
+ 					validFlag = false;
+ 				}
 
     			// Total value of IRA funds to convert
 
