@@ -19,7 +19,7 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Enter data requested below in order to determine whether moving funds and paying taxes today will lead to having more money for your retirement.</p> 
+  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Use this calculator to see whether moving funds and paying taxes today will lead to having more money for your retirement.</p> 
 		</div>
 
 		<div class="container">
@@ -304,6 +304,13 @@
   				</button>
 			</div>
 
+			<div class="alert alert-warning hidden" role="alert" id="amtConvertTooMuchAlert">
+  				Please select a value for the Amount of IRA that you want to convert that is less than or equal to the total IRA value.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#amtConvertTooMuchAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
 			<div class="alert alert-warning hidden" role="alert" id="yearsAlert">
   				Please enter a number between 1 and 50 for the Number of years before you expect to start withdrawing funds.
   				<button type="button" class="close" aria-label="Close" onclick="$('#yearsAlert').hide();">
@@ -312,7 +319,7 @@
 			</div>
 
 			<div class="alert alert-warning hidden" role="alert" id="interestAlert">
-  				Please select an investment profile which will indicate a likely rate of return.
+  				Please select an Investment risk profile which will indicate a Likely Rate of Return.
   				<button type="button" class="close" aria-label="Close" onclick="$('#interestAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
@@ -355,7 +362,7 @@
     			if (stateTaxRateToday == '' && stateTaxRateFuture == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || !isNaN(stateTaxRateFuture) || stateTaxRateFuture < 1 || stateTaxRateFuture > 50 || (stateTaxRateToday == '' && stateTaxRateFuture != '') || (stateTaxRateToday != '' && stateTaxRateFuture == '')) {
+    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || isNaN(stateTaxRateFuture) || stateTaxRateFuture < 1 || stateTaxRateFuture > 50 || (stateTaxRateToday == '' && stateTaxRateFuture != '') || (stateTaxRateToday != '' && stateTaxRateFuture == '')) {
 
  					$('#stateTaxAlert').show();
  					validFlag = false;
@@ -366,10 +373,15 @@
     			var totalIRAValue = document.getElementById('formNonRothIRAValue').value.trim();
     			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value.trim();
 
+    			var numTotalIRA = Number(totalIRAValue);
+    			var numNondeductIRA = Number(nondeductIRAValue);
+
     			if (totalIRAValue == '' && nondeductIRAValue == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(totalIRAValue) || totalIRAValue < 1 || totalIRAValue > 1000000 || totalIRAValue < nondeductIRAValue || !isNaN(nondeductIRAValue) || nondeductIRAValue < 1 || nondeductIRAValue > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
+    			else if (isNaN(totalIRAValue) || numTotalIRA < 1 || numTotalIRA > 1000000 || numTotalIRA < numNondeductIRA || isNaN(nondeductIRAValue) || numNondeductIRA < 1 || numNondeductIRA > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
+
+    				//alert(nondeductIRAValue + ' ' + tradIRAValue);
 
  					$('#IRAAlert').show();
  					validFlag = false;
@@ -382,6 +394,11 @@
  			  	if (isNaN(amtToConvert) || amtToConvert == '' || amtToConvert < 1 || amtToConvert > 1000000)
  				{
  					$('#amtConvertAlert').show();
+ 					validFlag = false;
+ 				}
+ 			  	else if (totalIRAValue != '' && Number(amtToConvert) > numTotalIRA)
+ 				{
+ 					$('#amtConvertTooMuchAlert').show();
  					validFlag = false;
  				}
 
@@ -412,24 +429,24 @@
 			<table class="table table-bordered hidden" id="resultsTable">
   				<thead>
     				<tr>
-      					<th scope="col">Amounts ($) available at first withdrawal</th>
+      					<th scope="col">Total tax rate in 2018: <output id="totaltax2018"></output>%, Future tax rate: <output id="totaltaxFuture"></output>%</th>
       					<th scope="col">Roth IRA conversion</th>
       					<th scope="col">Keep in traditional IRA</th>
     				</tr>
   				</thead>
   				<tbody>
     				<tr>
-      					<th scope="row">Invested funds</th>
+      					<th scope="row">Invested initial funds of $<output id="initialAmt"></output> at <output id="intRateReturn"></output>% annual rate</th>
       					<td>$<output id="finalRothIRA"></output></td>
       					<td>$<output id="finalTradIRA"></output></td>
     				</tr>
     				<tr>
-      					<th scope="row">Tax payment in 2018, invested</th>
+      					<th scope="row">Roth IRA conversion tax payment, if invested instead</th>
       					<td>none</td>
       					<td>$<output id="finalTaxesIRANonConvert"></output></td>
     				</tr>
     				<tr>
-      					<th scope="row">Total ($) available at first withdrawal</th>
+      					<th scope="row">Total ($) available after <output id="totalYears"></output> years</th>
       					<td>$<output id="finalRothIRA2"></output></td>
       					<td>$<output id="totalIRANonConvert"></output></td>
     				</tr>
@@ -439,38 +456,8 @@
 			
 		<!--Positioning the chart on the main page-->
 		<canvas id="myChart"></canvas>
-
-<!-- 		<div class="container">
-
-			<button class="btn btn-primary btn-lg" onclick="testFun('testId')" data-toggle="modal" data-target="#myModal">
-			  Launch demo modal
-			</button>
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			      </div>
-			      <div class="modal-body">
-			        <h1 id="testH1"></h1>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-		</div> -->
-
 	
      	<script>
- 			function testFun(variable){
-
-				document.getElementById('testH1').innerHTML=document.getElementById("formGroupExampleInput2").value;
-			}
-
 			function hideOtherTaxFilingStatuses(taxStatusPicked) {
 
 				var btn10Text;
@@ -567,17 +554,16 @@
 
 			function calculateAndDisplay() {
     			var margTaxRateToday = document.getElementById('marginalTaxRate').value;
-    			var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
+    			var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value.trim();
 
-    			var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value;
-    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value;
+    			var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value.trim();
+    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value.trim();
 
-    			var tradIRAValue = document.getElementById('formNonRothIRAValue').value;
-    			var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
-    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value;
+    			var tradIRAValue = document.getElementById('formNonRothIRAValue').value.trim();
+    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value.trim();
 
-    			var convertValue = document.getElementById('formConvertValue').value;
-    			var yearsValue = document.getElementById('formYears').value;
+    			var convertValue = document.getElementById('formConvertValue').value.trim();
+    			var yearsValue = document.getElementById('formYears').value.trim();
     			var interestRateValue = document.getElementById('investIntRate').value;
 
     			// Let's first hide all error messages, if we didn't click them away already
@@ -598,8 +584,8 @@
     			// We'll set prorateTaxFactor = 1.0 and it will reduce if we have nonzero nondeductible IRA values
 
     			var prorateTaxFactor = 1.0;
-    			if (!isNaN(nondeductIRAValue) && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
-    				prorateTaxFactor  = 1.0 - nondeductIRAValue/tradIRAValue;
+    			if (!isNaN(nondeductIRAValue) && nondeductIRAValue != '' && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
+    				prorateTaxFactor  = 1.0 - Number(nondeductIRAValue)/Number(tradIRAValue);
     				//alert(prorateTaxFactor);
     			}
 
@@ -607,10 +593,10 @@
 
     			var totalTaxRateToday = margTaxRateToday;
     			var totalTaxRateFuture = margTaxRateFuture;
-    			if (!isNaN(stateTaxRateToday) && stateTaxRateToday > 0 && !isNaN(stateTaxRateFuture) && stateTaxRateFuture > 0) {
-    				totalTaxRateToday  = margTaxRateToday + stateTaxRateToday;
-    				totalTaxRateFuture  = margTaxRateFuture + stateTaxRateFuture;    				
-    				alert(totalTaxRateToday);
+    			if (!isNaN(stateTaxRateToday) && stateTaxRateToday != '' && stateTaxRateToday > 0 && !isNaN(stateTaxRateFuture) && stateTaxRateFuture != '' && stateTaxRateFuture > 0) {
+    				totalTaxRateToday  = Number(margTaxRateToday) + Number(stateTaxRateToday);
+    				totalTaxRateFuture  = Number(margTaxRateFuture) + Number(stateTaxRateFuture);    				
+    				//alert(totalTaxRateToday);
     			}
 
 				if (validateFunction()) {
@@ -622,7 +608,11 @@
 	    			// For the amount converted to the Roth IRA
 	    			var finalCalc = FVcalc(convertValue,interestRateValue,yearsValue);
 	    			var roth = finalCalc;
-	    			//document.getElementById('finalRothIRA').value=finalCalc.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+	    			document.getElementById('intRateReturn').value=interestRateValue;
+	    			document.getElementById('totaltax2018').value=totalTaxRateToday;
+	    			document.getElementById('totaltaxFuture').value=totalTaxRateFuture;
+	    			document.getElementById('totalYears').value=yearsValue;
+	    			document.getElementById('initialAmt').value=convertValue;
 	    			document.getElementById('finalRothIRA').value=finalCalc.toFixed(2);
 	    			document.getElementById('finalRothIRA2').value=finalCalc.toFixed(2);
 
@@ -694,7 +684,7 @@
 				    data: {
 				        labels: ["Converted to Roth", "Keep in IRA"],
 				        datasets: [{
-				            label: "Roth Conversion",
+				            label: "Roth Conversion ($)",
 				            backgroundColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
 				            borderColor: ['rgb(255, 99, 132)','rgb(99, 255, 132)'],
 				            data: [roth, 0]
@@ -704,14 +694,14 @@
 				        },
 
 				        {
-				            label: "Keep in IRA",
+				            label: "Keep in IRA ($)",
 				            backgroundColor: ['rgb(99, 255, 132)','rgb(99, 255, 132)'],
 				            borderColor: ['rgb(99, 255, 132)','rgb(99, 255, 132)'],
 				            data: [0, trad]
 				        },
 
 				        {
-				            label: "Roth Conversion Taxes Invested",
+				            label: "Roth Conversion Taxes Invested ($)",
 				            backgroundColor: ['rgb(99, 132, 255)','rgb(99, 132, 255)'],
 				            borderColor: ['rgb(99, 132, 255)','rgb(99, 132, 255)'],
 				            data: [0, netInvTaxes]
@@ -742,23 +732,6 @@
 				    }
 				});
 			}
-
-
-			function addData(chart, data) {
-    			//chart.data.labels.push(label);
-    			chart.data.datasets.forEach((dataset) => {
-        			dataset.data.push(data);
-    				});
-    			chart.update();
-			}
-
-/*			function addData(chart, label, data) {
-    			chart.data.labels.push(label);
-    			chart.data.datasets.forEach((dataset) => {
-        			dataset.data.push(data);
-    				});
-    			chart.update();
-			}*/
 		</script>
 
 
