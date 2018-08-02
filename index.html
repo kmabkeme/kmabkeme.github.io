@@ -14,6 +14,7 @@
 			}	
 		</style>
 
+		<!--Code by Kristin Abkemeier, 8/2/2018-->
 	</head> 
 	<body>
 
@@ -26,7 +27,7 @@
 			<form>
 				<div class="row" style="border:3px solid #0066ff;">
 					<div class="col-sm">
-						<label for="tax-filing-status">Federal tax filing status:</label><br  />
+						<label for="tax-filing-status">Federal tax filing status:</label><br />
 
 						<div id="tax-filing-status" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
   							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('single');">
@@ -44,6 +45,9 @@
 						</div>
 					</div>
 
+					<!--I could not use a radio button set for the AGI because the behavior was very odd. Instead, I decided
+						to make a set of toggle buttons that would disable the other buttons when toggled on in order to 
+						approximate the exclusive selection capability of radio buttons.-->
 				 	<div class="col-sm">
 
 				 		<label for="income-range">Adjusted Gross Income for 2018:</label><br />
@@ -82,7 +86,6 @@
 					    	</div>
 						</div>
 
-
 						<br />
 
 		  				<div class="form-group">
@@ -94,10 +97,7 @@
 		    					</div>
 					    	</div>
 						</div>
-
-
 					</div>
-
 				</div>
 
 				<br />
@@ -105,7 +105,7 @@
 				<div class="row" style="border:3px solid #188414;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<label for="anyStateTaxes">Would you like to include state taxes in your calculation?</label><br />
+							<label for="anyStateTaxes">Would you like to include state taxes in your calculation for improved forecast accuracy?</label><br />
 		  					<label class="btn btn-success active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
 		    					    <span class="label-yes">Yes</span>
@@ -120,7 +120,7 @@
 					<div class="col-sm">
 						<div id="StateTaxesDIV" class="hidden">
 							<div class="form-group">
-						    	<label for="formStateTaxRateToday">Your state tax rate for 2018</label>
+						    	<label for="formStateTaxRateToday">State tax rate for 2018</label>
 						    	<div class="input-group">
 						    		<input type="number" min="0" class="form-control col-4" id="formStateTaxRateToday">
 						    		<div class="input-group-append">
@@ -148,7 +148,7 @@
 				<div class="row" style="border:3px solid #B50000;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
+							<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA? Such contributions will reduce the tax burden of conversion.</label><br />
 		  					<label class="btn btn-danger active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
 		    					    <span class="label-yes">Yes</span>
@@ -192,7 +192,7 @@
 					<div class="col-sm">
 
 					  	<div class="form-group">
-					    	<label for="formConvertValue">Amount of IRA that you would like to convert to Roth IRA:</label>
+					    	<label for="formConvertValue">Amount of non-Roth IRA funds that you would like to convert to Roth IRA:</label>
 					    	<div class="input-group">
 					    	    <div class="input-group-prepend">
 		      						<div class="input-group-text">$</div>
@@ -213,7 +213,7 @@
 					</div>
 					<div class="col-sm">
 
-						<label for="interest-rate">Select your investment risk profile and likely annual rate of return:</label>
+						<label for="interest-rate">Select your Investment Risk Profile and likely annual rate of return:</label>
 						<br />
 
 						<div id="interest-rate" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
@@ -388,8 +388,6 @@
     			}
     			else if (isNaN(totalIRAValue) || numTotalIRA < 1 || numTotalIRA > 1000000 || isNaN(nondeductIRAValue) || numNondeductIRA < 1 || numNondeductIRA > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
 
-    				//alert(nondeductIRAValue + ' ' + tradIRAValue);
-
  					$('#IRAAlert').show();
  					validFlag = false;
     			}
@@ -468,6 +466,8 @@
 			
 		<!--Positioning the chart on the main page-->
 		<canvas id="myChart"></canvas>
+
+
 	
      	<script>
 			function hideOtherTaxFilingStatuses(taxStatusPicked) {
@@ -586,6 +586,9 @@
     			$('#amtConvertAlert').hide();
     			$('#yearsAlert').hide();
     			$('#interestAlert').hide();
+    			// Also hide the results table and chart, in case we have already run a calculation
+    			$('#resultsTable').hide();
+    			$('#myChart').hide();
 
     			// If we have money in both nondeductible IRAs and traditional IRAs, then what is converted to a
     			// Roth IRA needs to be done in a prorated fashion according to the proportions of the two funds
@@ -593,12 +596,11 @@
     			// Cf. https://www.betterment.com/resources/roth-ira-rules-smart-ways-to-avoid-taxes-on-a-conversion/
     			// Or https://www.bogleheads.org/wiki/Backdoor_Roth_IRA
 
-    			// We'll set prorateTaxFactor = 1.0 and it will reduce if we have nonzero nondeductible IRA values
+    			// We'll set prorateTaxFactor = 1.0 and it will get reduced if we have nonzero nondeductible IRA values
 
     			var prorateTaxFactor = 1.0;
     			if (!isNaN(nondeductIRAValue) && nondeductIRAValue != '' && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
     				prorateTaxFactor  = 1.0 - Number(nondeductIRAValue)/Number(tradIRAValue);
-    				//alert(prorateTaxFactor);
     			}
 
     			// If we include state taxes, we need to modify the numbers that go into the calculations below
@@ -608,14 +610,11 @@
     			if (!isNaN(stateTaxRateToday) && stateTaxRateToday != '' && stateTaxRateToday > 0 && !isNaN(stateTaxRateFuture) && stateTaxRateFuture != '' && stateTaxRateFuture > 0) {
     				totalTaxRateToday  = Number(margTaxRateToday) + Number(stateTaxRateToday);
     				totalTaxRateFuture  = Number(margTaxRateFuture) + Number(stateTaxRateFuture);    				
-    				//alert(totalTaxRateToday);
     			}
 
 				if (validateFunction()) {
 
-    			//if (margTaxRateFutureValid) {
-
-	    			// Now we need to calculate the increase in value of each portion
+	    			// Now we need to calculate the increase in value of each portion: Roth converted, IRA, and saved tax money
 
 	    			// For the amount converted to the Roth IRA
 	    			var finalCalc = FVcalc(convertValue,interestRateValue,yearsValue);
@@ -651,6 +650,8 @@
 	    			$('#resultsTable').show();
 
 					drawBarChart();
+
+					$('#myChart').show();
 				}
         		
 			}
@@ -731,6 +732,8 @@
         				},
 
         				//responsive: true,
+
+        				// For making the chart a stacked bar chart
 
 				    	scales: {
             				xAxes: [{
