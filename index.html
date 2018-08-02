@@ -213,18 +213,6 @@
 			    	</div>
 				</div>
 
-<!-- 				<div class="form-group">
-			    	<label for="formInterestRate">Your expected rate of return, based on your risk profile:</label>
-			    	<div class="input-group">
-			    		<input type="number" min="1" max="7" class="form-control col-2" id="formYears" required>
-			    		<div class="input-group-addon">
-      						<div class="input-group-text">%</div>
-    					</div>
-			    	</div>
-				</div> -->
-
-
-
 				<label for="interest-rate">Select your investment risk profile and likely annual rate of return:</label>
 				<br />
 
@@ -259,6 +247,7 @@
     					</div>
 			    	</div>
 				</div>
+			
 
 				<!-- <div>
 					Likely Rate of Return: <strong><input id="investIntRate"></input>%</strong>
@@ -268,48 +257,116 @@
 
  
 				<div id="submitDIV">
-  					<button type="button" class="btn btn-secondary" onclick="myFunction();calculateAndDisplay();">Calculate</button>
+  					<button type="button" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
   				</div>
-  				<!--I think I can use a submit-type button to clear the form-->
+
   				<br />
 
-  				<div class="alert alert-error collapse" role="alert" id="passwordsNoMatchRegister">
+
+  			<button type="button" class="btn btn-secondary" onclick="validateFunction();">Try it</button>
+  			<br />
+
+  			</form>
+  		</div>
+
+<!--   				<div class="alert alert-error collapse" role="alert" id="passwordsNoMatchRegister">
   <span>
   <p>Looks like the passwords you entered don't match!</p>
   </span>
-</div>
+</div> -->
 
-  				<button type="button" class="btn btn-secondary" onclick="myFunction();">Try it</button>
+
+
+  				
 
   		<div class="container">
-			<div class="alert alert-warning hidden" role="alert" id="KristinTestAlert">
-  				<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  				<button type="button" class="close" aria-label="Close" onclick="$('#KristinTestAlert').hide();">
-    				<span aria-hidden="true">&times;</span>
+
+			<div class="alert alert-warning hidden" role="alert" id="futureTaxAlert">
+  				Please enter a number between 0 and 50 for Estimated federal income tax rate at time of first withdrawal.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#futureTaxAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
+			<div class="alert alert-warning hidden" role="alert" id="stateTaxAlert">
+  				Please enter a number between 1 and 50 for each of the present and future state tax rates.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#stateTaxAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
+			<div class="alert alert-warning hidden" role="alert" id="amtConvertAlert">
+  				Please enter a number between 1 and 1000000 for the Amount of IRA that you want to convert to a Roth IRA.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#amtConvertAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
   				</button>
 			</div>
 		</div>
 
-<script>
-				function myFunction() {
-    //alert("Hello! I am an alert box!");
+		<script>
+			function validateFunction() {
 
-var margTaxRateToday = document.getElementById('marginalTaxRate').value;
- var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
- //var margTaxRateFutureLabel = document.getElementById('futureTaxLabel').innerText;
+				var validFlag = true;
 
- var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
+				//var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 
- if (margTaxRateToday != '24')
- {
- 	//var x = document.getElementById('KristinTestAlert');
- 	//if (x.style.display === "none") {
-    //    	x.style.display = "block";
-    //   }
+ 				// Construct the error message based on the validations that fail
 
- //$('#passwordsNoMatchRegister').show();
-  $('#KristinTestAlert').show();
-}
+ 				//var errorMsg = '<strong>Please fix the following:</strong> <br />';
+
+ 				// No need to check on the 2018 marginal tax rate, because that is selected by radio buttons
+ 				// and thus will always have a valid value.
+
+ 				// First, make sure there's a valid value in the future tax rate field. 
+ 				// If not, then let's show an alert and return false so that we don't plot something wonky.
+ 				var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
+
+ 				if (isNaN(margTaxRateFuture) || margTaxRateFuture < 0 || margTaxRateFuture > 50)
+ 				{
+ 					$('#futureTaxAlert').show();
+ 					validFlag = false;
+ 				}
+
+ 				// The state tax rates and deductible/nondeductible IRA amounts aren't required, so I check for
+ 				// matched pairs of vslues in calculateAndDisplay(). But I guess I should give a warning if there
+ 				// isn't a matched set of each
+
+ 				var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value;
+    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value;
+
+    			if (stateTaxRateToday == '' && stateTaxRateFuture == ''){
+    				// Do nothing if both fields are empty, because this situation is OK
+    			}
+    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || !isNaN(stateTaxRateFuture) || tstateTaxRateFuture < 1 || stateTaxRateFuture > 50) {
+
+ 					$('#stateTaxAlert').show();
+ 					validFlag = false;
+    			}
+
+    			var tradIRAValue = document.getElementById('formNonRothIRAValue').value;
+    			var nondeductIRAChecked = document.getElementById('anyNondeductIRA').value;
+    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value;
+
+
+
+ 			  	var amtToConvert = document.getElementById('formConvertValue').value;
+
+ 			  	if (isNaN(amtToConvert) || amtToConvert < 1 || amtToConvert > 1000000)
+ 				{
+ 					$('#amtConvertAlert').show();
+ 					validFlag = false;
+ 				}
+
+
+ 				//document.getElementById('validationAlert').innerText = 'Kristin';
+
+ 				//$('#passwordsNoMatchRegister').show();
+
+ 				//$("#validationAlert").text("My new Text" + EndText);
+  				//$('#validationAlert').show();
+
+  				return validFlag;
+			}
 
  //alert(nondeductIRAChecked);
 
@@ -317,16 +374,10 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
     //				alert(margTaxRateFutureLabel);
     				//alert("lovely");
     //			}
-}
-</script>
 
-<!--   				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  					<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    					<span aria-hidden="true">&times;</span>
-  					</button>
-				</div> -->
+		</script>
 
+		<div class="container">
 				<div>
 					Final value of Roth IRA conversion: <strong>$<output id="finalRothIRA"></output></strong>
 				</div>
@@ -338,6 +389,7 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 				<div>
 					Final value of investing the money that would have gone to taxes for the IRA conversion: <strong>$<output id="finalTaxesIRANonConvert"></output></strong>
 				</div>
+		</div>
 
 		<!--<div class="container" style="position: relative; height:20vh; width:40vw">-->
 		<!--<div class="container" style="position: relative; height:90vh; width:90vw">-->
@@ -524,7 +576,7 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
     			// We'll set prorateTaxFactor = 1.0 and it will reduce if we have nonzero nondeductible IRA values
 
     			var prorateTaxFactor = 1.0;
-    			if (!isNaN(nondeductIRAValue ) && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
+    			if (!isNaN(nondeductIRAValue) && nondeductIRAValue > 0 && !isNaN(tradIRAValue) && tradIRAValue > 0) {
     				prorateTaxFactor  = 1.0 - nondeductIRAValue/tradIRAValue;
     				//alert(prorateTaxFactor);
     			}
@@ -539,6 +591,7 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
     				alert(totalTaxRateToday);
     			}
 
+				if (validateFunction()) {
 
     			//if (margTaxRateFutureValid) {
 
@@ -568,7 +621,7 @@ var margTaxRateToday = document.getElementById('marginalTaxRate').value;
 
 					//addData('myChart', [roth, trad]);
 					drawBarChart();
-				//}
+				}
         		
 			}
 
