@@ -408,25 +408,39 @@
 		</script>
 
 		<div class="container">
-				<div>
-					Final value of Roth IRA conversion: <strong>$<output id="finalRothIRA"></output></strong>
-				</div>
 
-				<div>
-					Final value if funds left in traditional IRA: <strong>$<output id="finalTradIRA"></output></strong>
-				</div>
-
-				<div>
-					Final value of investing the money that would have gone to taxes for the IRA conversion: <strong>$<output id="finalTaxesIRANonConvert"></output></strong>
-				</div>
+			<table class="table table-bordered hidden" id="resultsTable">
+  				<thead>
+    				<tr>
+      					<th scope="col">Amounts ($) available at first withdrawal</th>
+      					<th scope="col">Roth IRA conversion</th>
+      					<th scope="col">Keep in traditional IRA</th>
+    				</tr>
+  				</thead>
+  				<tbody>
+    				<tr>
+      					<th scope="row">Invested funds</th>
+      					<td>$<output id="finalRothIRA"></output></td>
+      					<td>$<output id="finalTradIRA"></output></td>
+    				</tr>
+    				<tr>
+      					<th scope="row">Tax payment in 2018, invested</th>
+      					<td>none</td>
+      					<td>$<output id="finalTaxesIRANonConvert"></output></td>
+    				</tr>
+    				<tr>
+      					<th scope="row">Total ($) available at first withdrawal</th>
+      					<td>$<output id="finalRothIRA2"></output></td>
+      					<td>$<output id="totalIRANonConvert"></output></td>
+    				</tr>
+  				</tbody>
+			</table>
 		</div>
+			
+		<!--Positioning the chart on the main page-->
+		<canvas id="myChart"></canvas>
 
-		<!--<div class="container" style="position: relative; height:20vh; width:40vw">-->
-		<!--<div class="container" style="position: relative; height:90vh; width:90vw">-->
-			<canvas id="myChart"></canvas>
-		<!--</div>-->
-
-		<div class="container">
+<!-- 		<div class="container">
 
 			<button class="btn btn-primary btn-lg" onclick="testFun('testId')" data-toggle="modal" data-target="#myModal">
 			  Launch demo modal
@@ -448,11 +462,7 @@
 			    </div>
 			  </div>
 			</div>
-		</div>
-
-		<div class="container">
-			<button class="btn btn-success" onclick="$(this).hide();"> Click me! </button>
-		</div>
+		</div> -->
 
 	
      	<script>
@@ -614,6 +624,7 @@
 	    			var roth = finalCalc;
 	    			//document.getElementById('finalRothIRA').value=finalCalc.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 	    			document.getElementById('finalRothIRA').value=finalCalc.toFixed(2);
+	    			document.getElementById('finalRothIRA2').value=finalCalc.toFixed(2);
 
 	    			// If you left the amount in the traditional IRA and allowed it to compound there
 	    			// But then you'll have to pay taxes on this amount
@@ -624,14 +635,19 @@
 
 	    			// The amount of taxes that need to be paid immediately for the Roth IRA conversion come out of other
 	    			// funds. If one does not convert the money to a Roth IRA, then this money could be invested in a
-	    			// regular investment account in which taxes apply to the capital gains only.
+	    			// regular investment account in which taxes apply to the capital gains only. 
+	    			// So, we calculate the compounded interest on the tax money, subtract off the principal, and 
+	    			// calculate the likely capital gains tax rate (15%) on the capital gains
 	    			//var investedTaxes = margTaxRateToday/100*convertValue * prorateTaxFactor;
 	    			var investedTaxes = totalTaxRateToday/100*convertValue * prorateTaxFactor;
 	    			var netInvTaxes = (FVcalc(investedTaxes,interestRateValue,yearsValue) - investedTaxes) * (1 - 0.15) + investedTaxes;
 	    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2);
-	/*    			document.getElementById('finalTaxesIRANonConvert').value=netInvTaxes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');*/
 
-					//addData('myChart', [roth, trad]);
+	    			var totalTradIRA = trad + netInvTaxes;
+	    			document.getElementById('totalIRANonConvert').value=totalTradIRA.toFixed(2);
+
+	    			$('#resultsTable').show();
+
 					drawBarChart();
 				}
         		
