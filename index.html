@@ -102,11 +102,11 @@
 
 				<br />
 
-				<div class="row" style="border:3px solid #cecece;">
+				<div class="row" style="border:3px solid #188414;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
 							<label for="anyStateTaxes">Would you like to include state taxes in your calculation?</label><br />
-		  					<label class="btn btn-secondary active">
+		  					<label class="btn btn-success active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
 		    					    <span class="label-yes">Yes</span>
 		    						<span class="label-no">No</span>
@@ -145,11 +145,11 @@
 
 			  	<br />
 
-				<div class="row" style="border:3px solid #cecece;">
+				<div class="row" style="border:3px solid #B50000;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
 							<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA?</label><br />
-		  					<label class="btn btn-secondary active">
+		  					<label class="btn btn-danger active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
 		    					    <span class="label-yes">Yes</span>
 		    						<span class="label-no">No</span>
@@ -188,7 +188,7 @@
 
 			  	<br />
 
-			  	<div class="row" style="border:3px solid #cecece;">
+			  	<div class="row" style="border:3px solid #F0C000;">
 					<div class="col-sm">
 
 					  	<div class="form-group">
@@ -217,22 +217,22 @@
 						<br />
 
 						<div id="interest-rate" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '2.5';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '2.5';">
 		    					<input type="radio" name="options2" id="rate2.5" autocomplete="off" checked> Short-term - 2.5%
 		  					</label>
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '3.5';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '3.5';">
 		    					<input type="radio" name="options2" id="rate3.5" autocomplete="off"> Conservative - 3.5%
 		  					</label>
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '4.4';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '4.4';">
 		    					<input type="radio" name="options2" id="rate4.4" autocomplete="off"> Moderately Conservative - 4.4%
 		  					</label>
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '5.2';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '5.2';">
 		    					<input type="radio" name="options2" id="rate5.2" autocomplete="off"> Moderate - 5.2% 
 		  					</label>
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '6.0';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '6.0';">
 		    					<input type="radio" name="options2" id="rate6.0" autocomplete="off"> Moderately Aggressive - 6.0% 
 		  					</label>
-		  					<label class="btn btn-secondary" onclick="investIntRate.value = '6.6';">
+		  					<label class="btn btn-warning" onclick="investIntRate.value = '6.6';">
 		    					<input type="radio" name="options2" id="rate6.6" autocomplete="off"> Aggressive - 6.6% 
 		  					</label>
 						</div>
@@ -245,7 +245,7 @@
 						<div class="form-group">
 					    	<label for="investIntRate">Likely Rate of Return:</label>
 					    	<div class="input-group">
-					    		<input type="number" max="7" min="0" class="form-control col-3" id="investIntRate" value="2.5" readonly>
+					    		<input type="number" max="7" min="0" class="form-control col-3" id="investIntRate" readonly>
 					    		<div class="input-group-append">
 		      						<div class="input-group-text">%</div>
 		    					</div>
@@ -258,7 +258,7 @@
 
  
 				<div id="submitDIV">
-  					<button type="button" class="btn btn-secondary" onclick="calculateAndDisplay();">Calculate</button>
+  					<button type="button" class="btn btn-primary" onclick="calculateAndDisplay();">Calculate</button>
   				</div>
 
   				<br />
@@ -269,28 +269,28 @@
   		<div class="container">
   			<br />
 
-  			<div class="alert alert-warning hidden" role="alert" id="2018TaxAlert">
+  			<div class="alert alert-primary hidden" role="alert" id="2018TaxAlert">
   				Please select a Federal tax filing status and Adjusted Gross Income range for 2018 to get your Marginal Tax Rate for 2018.
   				<button type="button" class="close" aria-label="Close" onclick="$('#2018TaxAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
 			</div>
 
-			<div class="alert alert-warning hidden" role="alert" id="futureTaxAlert">
+			<div class="alert alert-primary hidden" role="alert" id="futureTaxAlert">
   				Please enter a number between 0 and 50 for Estimated federal income tax rate at time of first withdrawal.
   				<button type="button" class="close" aria-label="Close" onclick="$('#futureTaxAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
 			</div>
 
-			<div class="alert alert-warning hidden" role="alert" id="stateTaxAlert">
+			<div class="alert alert-success hidden" role="alert" id="stateTaxAlert">
   				Please enter a number between 1 and 50 for each of the present and future state tax rates.
   				<button type="button" class="close" aria-label="Close" onclick="$('#stateTaxAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
 			</div>
 
-			<div class="alert alert-warning hidden" role="alert" id="IRAAlert">
+			<div class="alert alert-danger hidden" role="alert" id="IRAAlert">
   				Please enter a number between 1 and 1000000 for both the nondeductible and total IRA values.
   				<button type="button" class="close" aria-label="Close" onclick="$('#IRAAlert').hide();">
     			<span aria-hidden="true">&times;</span>
@@ -307,6 +307,13 @@
 			<div class="alert alert-warning hidden" role="alert" id="yearsAlert">
   				Please enter a number between 1 and 50 for the Number of years before you expect to start withdrawing funds.
   				<button type="button" class="close" aria-label="Close" onclick="$('#yearsAlert').hide();">
+    			<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+
+			<div class="alert alert-warning hidden" role="alert" id="interestAlert">
+  				Please select an investment profile which will indicate a likely rate of return.
+  				<button type="button" class="close" aria-label="Close" onclick="$('#interestAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
 			</div>
@@ -330,9 +337,9 @@
 
  				// Make sure there's a valid value in the future tax rate field. 
  				// If not, then let's show an alert and return false so that we don't plot something wonky.
- 				var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value;
+ 				var margTaxRateFuture = document.getElementById('formEstFutureTaxRate').value.trim();
 
- 				if (isNaN(margTaxRateFuture) || margTaxRateFuture < 0 || margTaxRateFuture > 50)
+ 				if (margTaxRateFuture == ''|| isNaN(margTaxRateFuture) || margTaxRateFuture < 0 || margTaxRateFuture > 50)
  				{
  					$('#futureTaxAlert').show();
  					validFlag = false;
@@ -342,13 +349,13 @@
  				// matched pairs of vslues in calculateAndDisplay(). But I guess I should give a warning if there
  				// isn't a matched set of each
 
- 				var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value;
-    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value;
+ 				var stateTaxRateToday = document.getElementById('formStateTaxRateToday').value.trim();
+    			var stateTaxRateFuture = document.getElementById('formStateTaxRateFuture').value.trim();
 
     			if (stateTaxRateToday == '' && stateTaxRateFuture == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || !isNaN(stateTaxRateFuture) || stateTaxRateFuture < 1 || stateTaxRateFuture > 50) {
+    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || !isNaN(stateTaxRateFuture) || stateTaxRateFuture < 1 || stateTaxRateFuture > 50 || (stateTaxRateToday == '' && stateTaxRateFuture != '') || (stateTaxRateToday != '' && stateTaxRateFuture == '')) {
 
  					$('#stateTaxAlert').show();
  					validFlag = false;
@@ -356,13 +363,13 @@
 
     			// The amounts in the nondeductible IRAs and total amounts in IRAs have to both have values or else
     			// they aren't used.
-    			var totalIRAValue = document.getElementById('formNonRothIRAValue').value;
-    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value;
+    			var totalIRAValue = document.getElementById('formNonRothIRAValue').value.trim();
+    			var nondeductIRAValue = document.getElementById('formNondeductibleIRA').value.trim();
 
     			if (totalIRAValue == '' && nondeductIRAValue == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(totalIRAValue) || totalIRAValue < 1 || totalIRAValue > 1000000 || totalIRAValue < nondeductIRAValue || !isNaN(nondeductIRAValue) || nondeductIRAValue < 1 || nondeductIRAValue > 1000000) {
+    			else if (isNaN(totalIRAValue) || totalIRAValue < 1 || totalIRAValue > 1000000 || totalIRAValue < nondeductIRAValue || !isNaN(nondeductIRAValue) || nondeductIRAValue < 1 || nondeductIRAValue > 1000000 || (totalIRAValue == '' && nondeductIRAValue != '') || (totalIRAValue != '' && nondeductIRAValue == '')) {
 
  					$('#IRAAlert').show();
  					validFlag = false;
@@ -370,20 +377,29 @@
 
     			// Total value of IRA funds to convert
 
- 			  	var amtToConvert = document.getElementById('formConvertValue').value;
+ 			  	var amtToConvert = document.getElementById('formConvertValue').value.trim();
 
- 			  	if (isNaN(amtToConvert) || amtToConvert < 1 || amtToConvert > 1000000)
+ 			  	if (isNaN(amtToConvert) || amtToConvert == '' || amtToConvert < 1 || amtToConvert > 1000000)
  				{
  					$('#amtConvertAlert').show();
  					validFlag = false;
  				}
 
  				// Validate the number of years entered
- 				var years = document.getElementById('formYears').value;
+ 				var years = document.getElementById('formYears').value.trim();
 
- 			  	if (isNaN(years) || years < 1 || years > 50)
+ 			  	if (isNaN(years) || years == ''|| years < 1 || years > 50)
  				{
  					$('#yearsAlert').show();
+ 					validFlag = false;
+ 				}
+
+ 				// Validate the likely rate of return (interest rate)
+ 				var interestRate = document.getElementById('investIntRate').value.trim();
+
+ 			  	if (isNaN(interestRate) || interestRate == '')
+ 				{
+ 					$('#interestAlert').show();
  					validFlag = false;
  				}
 
@@ -561,6 +577,7 @@
     			$('#IRAAlert').hide();
     			$('#amtConvertAlert').hide();
     			$('#yearsAlert').hide();
+    			$('#interestAlert').hide();
 
     			// If we have money in both nondeductible IRAs and traditional IRAs, then what is converted to a
     			// Roth IRA needs to be done in a prorated fashion according to the proportions of the two funds
