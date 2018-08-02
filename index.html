@@ -105,7 +105,7 @@
 				<div class="row" style="border:3px solid #188414;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<label for="anyStateTaxes">Would you like to include state taxes in your calculation for improved forecast accuracy?</label><br />
+							<label for="anyStateTaxes">Would you like to include <strong>state taxes</strong> in your calculation for improved forecast accuracy?</label><br />
 		  					<label class="btn btn-success active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
 		    					    <span class="label-yes">Yes</span>
@@ -148,7 +148,7 @@
 				<div class="row" style="border:3px solid #B50000;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<label for="anyNondeductIRA">Have you made any nondeductible contributions to your Traditional IRA? Such contributions will reduce the tax burden of conversion.</label><br />
+							<label for="anyNondeductIRA">Have you made any <strong>nondeductible</strong> contributions to your Traditional IRA? Such contributions will reduce the tax burden of Roth conversion.</label><br />
 		  					<label class="btn btn-danger active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
 		    					    <span class="label-yes">Yes</span>
@@ -284,7 +284,7 @@
 			</div>
 
 			<div class="alert alert-success hidden" role="alert" id="stateTaxAlert">
-  				Please enter a number between 1 and 50 for each of the present and future state tax rates.
+  				Please enter a number between 0 and 50 for each of the present and future state tax rates.
   				<button type="button" class="close" aria-label="Close" onclick="$('#stateTaxAlert').hide();">
     			<span aria-hidden="true">&times;</span>
   				</button>
@@ -369,7 +369,7 @@
     			if (stateTaxRateToday == '' && stateTaxRateFuture == ''){
     				// Do nothing if both fields are empty, because this situation is OK
     			}
-    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 1 || stateTaxRateToday > 50 || isNaN(stateTaxRateFuture) || stateTaxRateFuture < 1 || stateTaxRateFuture > 50 || (stateTaxRateToday == '' && stateTaxRateFuture != '') || (stateTaxRateToday != '' && stateTaxRateFuture == '')) {
+    			else if (isNaN(stateTaxRateToday) || stateTaxRateToday < 0 || stateTaxRateToday > 50 || isNaN(stateTaxRateFuture) || stateTaxRateFuture < 0 || stateTaxRateFuture > 50 || (stateTaxRateToday == '' && stateTaxRateFuture != '') || (stateTaxRateToday != '' && stateTaxRateFuture == '')) {
 
  					$('#stateTaxAlert').show();
  					validFlag = false;
