@@ -20,7 +20,7 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>Is it worth it to do a <a href="javascript://" data-toggle="popover" title="Backdoor Roth IRA conversion" data-content="Roth IRAs generally allow a person to add at most $5,500 per year, but you can add more than this limit by moving funds from a traditional IRA and paying any taxes that had been deferred on the traditional IRA money. Paying taxes now means tax-free capital gains in the Roth IRA." data-placement="bottom">"backdoor" conversion</a> from a <a href="javascript://" data-toggle="popover" title="Traditional IRA" data-content="In a standard IRA (Individual Retirement Account), the funds are not taxed at the time of investment, with the trade-off that the funds and capital gains will be taxed once the owner reaches retirement and begins to withdraw funds from the account." data-placement="bottom">traditional IRA</a> to a <a href="javascript://" data-toggle="popover" title="Roth IRA" data-content="In a Roth IRA (Individual Retirement Account), the funds are taxed at the time of investment, but then the capital gains will not be taxed when they are withdrawn during retirement. The owner also has greater flexibility in deciding when to withdraw funds than for a traditional IRA account." data-placement="bottom">Roth IRA</a>? Use this calculator to see whether moving funds and paying taxes today will lead to having more money for your retirement than paying taxes later.</p> 
+  			<p>Is it worth it to do a <a href="javascript://" data-toggle="popover" title="Backdoor Roth IRA conversion" data-content="Roth IRAs generally allow a person to add at most $5,500 per year, but you can add more than this limit by moving funds from a traditional IRA and paying any taxes that had been deferred on the traditional IRA money. Paying taxes today means that capital gains in the Roth IRA will not be taxable in the future." data-placement="bottom">"backdoor" conversion</a> from a <a href="javascript://" data-toggle="popover" title="Traditional IRA" data-content="In a standard IRA (Individual Retirement Account), the initial funds (principal) are not taxed at the time of investment, with the trade-off that the principal and any capital gains will be taxed once the owner reaches retirement and begins to withdraw funds from the account. The fund owner is also required to withdraw funds each year and thus pay taxes." data-placement="bottom">traditional IRA</a> to a <a href="javascript://" data-toggle="popover" title="Roth IRA" data-content="In a Roth IRA (Individual Retirement Account), the initial funds (principal) are taxed at the time of investment, but then the capital gains will not be taxed when they are withdrawn during retirement. The owner also has greater flexibility in deciding when to withdraw funds than for a traditional IRA account." data-placement="bottom">Roth IRA</a>? Use this calculator to see whether moving funds and paying taxes today will lead to having more money for your retirement than paying taxes later.</p> 
 		</div>
 
 		<div class="container">
@@ -106,9 +106,9 @@
 						<div class="btn-group-toggle" data-toggle="buttons">
 							<a href="javascript://" data-toggle="popover" title="State taxes" data-content="State tax rates may be as high as 11%, so inputting your state taxes in your calculation is an important factor in getting a more accurate result. It's important to note, however, that some states treat the IRA conversion amount differently, and may not even tax it at all." data-placement="bottom"><label for="anyStateTaxes">Would you like to include <strong>state taxes</strong> in your calculation for improved forecast accuracy?</label></a><br />
 		  					<label class="btn btn-success active">
-		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
-		    					    <span class="label-yes">Yes</span>
-		    						<span class="label-no">No</span>
+		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="document.getElementById('formStateTaxRateToday').value='';document.getElementById('formStateTaxRateFuture').value='';toggler('StateTaxesDIV');">
+		    					    <span class="label-hide">No</span>
+		    						<span class="label-show">Yes</span>
 		  					</label>
 						</div>
 						<div class="row">
@@ -149,9 +149,9 @@
 						<div class="btn-group-toggle" data-toggle="buttons">
 							<a href="javascript://" data-toggle="popover" title="Nondeductible IRA funds" data-content="If you've made nondeductible IRA contributions, you've already paid income taxes on them and won't be required to pay taxes again if you convert to a Roth IRA." data-placement="bottom"><label for="anyNondeductIRA">Have you made any <strong>nondeductible</strong> contributions to your Traditional IRA? Such contributions will reduce the tax burden of Roth conversion.</label></a><br />
 		  					<label class="btn btn-danger active">
-		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
-		    					    <span class="label-yes">Yes</span>
-		    						<span class="label-no">No</span>
+		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="document.getElementById('formNondeductibleIRA').value='';document.getElementById('formNonRothIRAValue').value='';toggler('NonDeductIRADIV');">
+		    					    <span class="label-hide">No</span>
+		    						<span class="label-show">Yes</span>
 		  					</label>
 						</div>
 						<div class="row">
@@ -256,8 +256,15 @@
 				<br />
 
  
-				<div id="submitDIV">
-  					<button type="button" class="btn btn-primary" onclick="calculateAndDisplay();">Calculate</button>
+<!-- 				<div id="submitDIV"> -->
+				<div class="row">
+					<div class="col-2">
+  						<button type="button" class="btn btn-primary" onclick="calculateAndDisplay();">Calculate</button>
+  					</div>
+
+  					<div class="col-2">
+  						<button type="button" class="btn btn-secondary" onclick="resetAllFields();">Reset</button>
+  					</div>
   				</div>
 
   				<br />
@@ -691,6 +698,39 @@
 
     			return FutureValue
 			}
+
+			function resetAllFields() {
+    			document.getElementById('marginalTaxRate').value = '';
+    			document.getElementById('formEstFutureTaxRate').value = '';
+
+    			document.getElementById('formStateTaxRateToday').value = '';
+    			document.getElementById('formStateTaxRateFuture').value = '';
+
+    			document.getElementById('formNonRothIRAValue').value = '';
+    			document.getElementById('formNondeductibleIRA').value = '';
+
+    			document.getElementById('formConvertValue').value ='';
+    			document.getElementById('formYears').value ='';
+    			document.getElementById('investIntRate').value = '';
+
+    			$('#2018TaxAlert').hide();
+    			$('#futureTaxAlert').hide();
+    			$('#stateTaxAlert').hide();
+    			$('#IRAAlert').hide();
+    			$('#amtConvertAlert').hide();
+    			$('#yearsAlert').hide();
+    			$('#interestAlert').hide();
+    			// Also hide the results table and chart, in case we have already run a calculation
+    			$('#resultsTable').hide();
+    			$('#myChart').hide();
+    			$('#paysToStay').hide();
+    			$('#goRoth').hide();
+
+    			$('input[name=options]').attr('checked',false);
+    			$('input[name=options2]').attr('checked',false);
+			}
+
+
 
 		</script>
 

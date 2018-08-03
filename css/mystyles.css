@@ -14,13 +14,13 @@
     width: 300px;
 }
 
-.label-no {
+.label-show {
   display: none;
 }
-input:checked ~ .label-yes {
+input:checked ~ .label-hide {
   display: none;
 }
-input:checked ~ .label-no {
+input:checked ~ .label-show {
   display: inline;
 }
 
