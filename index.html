@@ -20,7 +20,7 @@
 
 		<div class="container">
   			<h1>Roth IRA Conversion Calculator</h1>
-  			<p>Is it worth it to do a "backdoor" conversion from a traditional IRA to a Roth IRA? Use this calculator to see whether moving funds and paying taxes today will lead to having more money for your retirement.</p> 
+  			<p>Is it worth it to do a "backdoor" conversion from a <a href="javascript://" data-toggle="popover" title="Traditional IRA" data-content="In a standard IRA (Individual Retirement Account), the funds are not taxed at the time of investment, with the trade-off that the funds and capital gains are taxed once the owner reaches retirement and begins to withdraw funds from the account. The expectation is that the tax rate will be lower in retirement." data-placement="bottom">traditional IRA</a> to a <a href="javascript://" data-toggle="popover" title="Roth IRA" data-content="In a Roth IRA (Individual Retirement Account), the funds are taxed at the time of investment, but then all capital gains will not be taxed. The owner also has greater flexibility in deciding when to withdraw funds than for a traditional IRA account." data-placement="bottom">Roth IRA</a>? Use this calculator to see whether moving funds and paying taxes today will lead to having more money for your retirement than paying taxes later.</p> 
 		</div>
 
 		<div class="container">
@@ -435,6 +435,17 @@
 
 		<div class="container">
 
+
+			<div class="hidden" id="paysToStay">
+				<h2>It pays to stay in the IRA!</h2>
+			</div>
+
+
+			<div class="hidden" id="goRoth">
+				<h2>Move to the Roth IRA!</h2>
+			</div>
+
+
 			<table class="table table-bordered hidden" id="resultsTable">
   				<thead>
     				<tr>
@@ -588,6 +599,8 @@
     			// Also hide the results table and chart, in case we have already run a calculation
     			$('#resultsTable').hide();
     			$('#myChart').hide();
+    			$('#paysToStay').hide();
+    			$('#goRoth').hide();
 
     			// If we have money in both nondeductible IRAs and traditional IRAs, then what is converted to a
     			// Roth IRA needs to be done in a prorated fashion according to the proportions of the two funds
@@ -645,6 +658,15 @@
 
 	    			var totalTradIRA = trad + netInvTaxes;
 	    			document.getElementById('totalIRANonConvert').value=totalTradIRA.toFixed(2);
+
+	    			if (totalTradIRA >= roth)
+	    			{
+	    				$('#paysToStay').show();
+	    			}
+	    			else
+	    			{
+	    				$('#goRoth').show();
+	    			}
 
 	    			$('#resultsTable').show();
 
