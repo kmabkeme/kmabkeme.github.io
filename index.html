@@ -27,7 +27,7 @@
 			<form>
 				<div class="row" style="border:3px solid #0066ff;">
 					<div class="col-sm">
-						<a href="#" data-toggle="popover" title="Federal tax filing status" data-content="Your marginal Federal tax rate will be applied to all tax-deductible IRA funds that get converted into a Roth IRA. Please select the correct filing status for the most accurate forecast."><label for="tax-filing-status">Federal tax filing status:</label></a><br />
+						<a href="javascript://" data-toggle="popover" title="Federal tax filing status" data-content="Your marginal Federal tax rate will be applied to all tax-deductible IRA funds that get converted into a Roth IRA. Please select the correct filing status for the most accurate forecast." data-placement="bottom"><label for="tax-filing-status">Federal tax filing status:</label></a><br />
 						<div id="tax-filing-status" class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
   							<label class="btn btn-primary" onclick="hideOtherTaxFilingStatuses('single');" data-tooltip="tooltip" title="My tooltip">
     							<input type="radio" name="options" id="single" autocomplete="off" checked> Single
@@ -49,7 +49,7 @@
 						approximate the exclusive selection capability of radio buttons.-->
 				 	<div class="col-sm">
 
-				 		<a href="#" data-toggle="popover" title="Adjusted Gross Income for 2018" data-content="Your AGI (which you can fine from your 2017 tax return Form 1040 at line 37) determines your marginal tax rate, which affects the rate at which the IRA conversion will be taxed."><label for="income-range">Adjusted Gross Income for 2018:</label></a><br />
+				 		<a href="javascript://" data-toggle="popover" title="Adjusted Gross Income for 2018" data-content="Your AGI (which you can fine from your 2017 tax return Form 1040 at line 37) determines your marginal tax rate, which affects the rate at which the IRA conversion will be taxed." data-placement="bottom"><label for="income-range">Adjusted Gross Income for 2018:</label></a><br />
 
 		  				<div id="income-range" class="panel-body">
 							<button type="button" id="btn10" class="btn btn-primary rounded-0" data-toggle="button" onclick="hideOtherIncomes('btn12','btn22','btn24','btn32','btn35','btn37');marginalTaxRate.value = '10';"> 0 to $9,525 </button>
@@ -88,7 +88,7 @@
 						<br />
 
 		  				<div class="form-group">
-					    	<a href="#" data-toggle="popover" title="Tax rate at first withdrawal" data-content="Federal tax rates can change with each administration, so we can only make a rough estimate here.			One approach to estimating your future tax rate is to base your future income tax rate on the amount you think you'll need to live on for your first year of retirement. Ask yourself how that amount compares to what you're making now—is it less, more, or about the same?"><label for="formEstFutureTaxRate" id="futureTaxLabel">Estimated federal income tax rate at time of first withdrawal</label></a>
+					    	<a href="javascript://" data-toggle="popover" title="Tax rate at first withdrawal" data-content="Federal tax rates can change with each administration, so we can only make a rough estimate here.			One approach to estimating your future tax rate is to base your future income tax rate on the amount you think you'll need to live on for your first year of retirement. Ask yourself how that amount compares to what you're making now—is it less, more, or about the same?" data-placement="bottom"><label for="formEstFutureTaxRate" id="futureTaxLabel">Estimated federal income tax rate at time of first withdrawal</label></a>
 					    	<div class="input-group">
 					    		<input type="number" max="50" min="0" class="form-control col-2" id="formEstFutureTaxRate" value="15">
 					    		<div class="input-group-append">
@@ -104,7 +104,7 @@
 				<div class="row" style="border:3px solid #188414;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<a href="#" data-toggle="popover" title="State taxes" data-content="State tax rates may be as high as 11%, so inputting your state taxes in your calculation is an important factor in getting a more accurate result. It's important to note, however, that some states treat the IRA conversion amount differently, and may not even tax it at all."><label for="anyStateTaxes">Would you like to include <strong>state taxes</strong> in your calculation for improved forecast accuracy?</label></a><br />
+							<a href="javascript://" data-toggle="popover" title="State taxes" data-content="State tax rates may be as high as 11%, so inputting your state taxes in your calculation is an important factor in getting a more accurate result. It's important to note, however, that some states treat the IRA conversion amount differently, and may not even tax it at all." data-placement="bottom"><label for="anyStateTaxes">Would you like to include <strong>state taxes</strong> in your calculation for improved forecast accuracy?</label></a><br />
 		  					<label class="btn btn-success active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyStateTaxes" onchange="toggler('StateTaxesDIV');">
 		    					    <span class="label-yes">Yes</span>
@@ -147,7 +147,7 @@
 				<div class="row" style="border:3px solid #B50000;">
 					<div class="col-sm">
 						<div class="btn-group-toggle" data-toggle="buttons">
-							<a href="#" data-toggle="popover" title="Nondeductible IRA funds" data-content="If you've made nondeductible IRA contributions, you've already paid income taxes on them and won't be required to pay taxes again if you convert to a Roth IRA."><label for="anyNondeductIRA">Have you made any <strong>nondeductible</strong> contributions to your Traditional IRA? Such contributions will reduce the tax burden of Roth conversion.</label></a><br />
+							<a href="javascript://" data-toggle="popover" title="Nondeductible IRA funds" data-content="If you've made nondeductible IRA contributions, you've already paid income taxes on them and won't be required to pay taxes again if you convert to a Roth IRA." data-placement="bottom"><label for="anyNondeductIRA">Have you made any <strong>nondeductible</strong> contributions to your Traditional IRA? Such contributions will reduce the tax burden of Roth conversion.</label></a><br />
 		  					<label class="btn btn-danger active">
 		    					<input type="checkbox" checked autocomplete="off" id="anyNondeductIRA" onchange="toggler('NonDeductIRADIV');">
 		    					    <span class="label-yes">Yes</span>
